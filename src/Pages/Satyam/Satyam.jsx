@@ -29,10 +29,10 @@ const links = [
 
 const Satyam = () => {
   return (
-    <div className="grid grid-cols-[auto_auto]  gap-10 bg-[#ebebeb] p-4">
+    <div className="grid grid-cols-[auto_auto] gap-10 bg-[#f6f6f6] p-4">
       <SideBar links={links} />
       <main>
-        <Flex className="mb-6 items-center justify-between rounded-2xl bg-white px-6 py-3">
+        <Flex className="mb-6 items-center justify-between rounded-2xl bg-white px-6 py-3 shadow-[0_0_100px_2px_rgba(0,0,0,.2)]">
           <SearchBar />
           <Profile />
         </Flex>

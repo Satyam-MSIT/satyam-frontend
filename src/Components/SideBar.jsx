@@ -1,5 +1,6 @@
 // Third party
 import { useState } from "react";
+import { FaChevronRight } from "react-icons/fa6";
 
 // User
 import { NavLink, Link } from "react-router-dom";
@@ -43,19 +44,20 @@ const SideBar = ({ links }) => {
   return (
     <FlexCol
       as="aside"
-      className="relative min-w-max items-center justify-between gap-10 rounded-xl bg-white px-8 pb-8 pt-6"
+      className="relative min-w-max items-center justify-between gap-10 rounded-xl bg-black px-8 py-6"
       style={{
         minHeight: "calc(100vh - 2rem)",
       }}
     >
       {/* Show Button */}
-      <Center className="absolute left-full top-[12%] h-7  w-7 -translate-x-1/2 rounded-full bg-[#f5f5f5] shadow-lg transition-colors hover:bg-blue">
-        <button onClick={handleNavState}>
-          <img
-            src={ArrowRight}
-            className={`aspect-auto w-5 ${navState === "show" ? "rotate-180" : ""}`}
-          />
-        </button>
+      <Center
+        as="button"
+        className="absolute left-full top-[12%] h-9 w-9 -translate-x-1/2 rounded-full bg-[#f5f5f5] shadow-lg  transition-all hover:bg-blue hover:text-white "
+        onClick={handleNavState}
+      >
+        <FaChevronRight
+          className={`${navState === "show" ? "rotate-180" : ""} `}
+        />
       </Center>
 
       {/* Icon and other links */}
