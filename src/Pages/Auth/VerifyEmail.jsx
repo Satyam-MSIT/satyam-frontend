@@ -93,7 +93,7 @@ const VerifyEmail = () => {
   if (redirect === 1) navigate("/auth/login", { replace: true });
 
   return (
-    <main className="relative flex min-h-screen flex-col pb-4 pt-14 ">
+    <main className="relative flex min-h-screen flex-col pb-4 pt-4 ">
       <Logo type="long" size={4} className="self-center" />
       <FlexCol className="absolute left-1/2 top-1/2  w-full -translate-x-1/2 -translate-y-1/2  gap-16 ">
         <StatusIcons className="self-center" status={status} />

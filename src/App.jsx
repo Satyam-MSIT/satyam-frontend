@@ -4,9 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-import Logo from "./Components/Logo";
 import useinitAuth from "./Hooks/useinitAuth";
-import { CenterAbsolute } from "./Elements/Center";
 import Loader from "./Components/Loader";
 import Profile from "./Pages/Reviewer/Profile";
 const Landing = lazy(() => import("./Pages/Home/Landing"));

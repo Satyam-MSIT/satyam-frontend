@@ -5,23 +5,21 @@ import { useDispatch } from "react-redux";
 import { update } from "../store/userslice";
 import { getItem } from "../Functions/storage";
 
+// info = {
+//   name: "Vipul Goel",
+//   email: "user@gmail.com",
+//   image: "img.png",
+//   default_role: "author",
+//   current_role: "reviewer",
+// };
+
 const useinitAuth = () => {
   const dispatch = useDispatch();
 
-  const data = JSON.parse(getItem("data") ?? "{}");
+  const info = JSON.parse(getItem("info") ?? "{}");
   const l_id = getItem("l_id");
-  const current_role = getItem("current_role");
 
-  dispatch(
-    update({
-      name: data.name,
-      email: data.email,
-      image: data.image,
-      default_role: data.default_role,
-      current_role: current_role,
-      token: l_id,
-    }),
-  );
+  dispatch(update({ ...info, token: l_id }));
 };
 
 export default useinitAuth;

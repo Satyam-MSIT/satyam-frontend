@@ -1,16 +1,7 @@
 const getRoute = (role) => {
-  switch (role) {
-    case "author":
-      return "/author";
-    case "reviewer":
-      return "/reviewer";
-    case "satyam-admin":
-    case "satyam-chief-editor":
-    case "satyam-member":
-      return "/satyam";
-    default:
-      return "/";
-  }
+  if (role === "author" || role === "reviewer") return `/${role}`;
+  if (role.startsWith("satyam")) return "/satyam";
+  return "/";
 };
 
 export default getRoute;
