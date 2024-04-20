@@ -49,6 +49,10 @@ const links = [
         href: "/issues/previous",
         name: "Previous Issue",
       },
+      {
+        href: "/issues/newsletter",
+        name: "Subscribe",
+      },
     ],
   },
   {

@@ -10,6 +10,9 @@ import About from "./About/About";
 import Faq from "./Faq";
 import EditorsPage from "./EditorsPage";
 
+import Modals from "./Modal";
+import Footer from "./Footer";
+
 const Landing = () => {
   return (
     <>
@@ -40,12 +43,20 @@ const Landing = () => {
         <Route index element={<About />} />
       </Routes>
       <Routes>
-        <Route index element={<PublicationProcess />} />
-        <Route path="/aboutus" element={<About />} />
-        <Route path="/faq" element={<Faq />} />
-        <Route path="/editorspage" element={<EditorsPage />} />
+      <Route index element={<PublicationProcess />} />
+      <Route path="/aboutus" element={<About />} />
+      <Route path="/faq" element={<Faq />} />
+      <Route path="/editorspage" element={<EditorsPage />} />
+      <Route path="/issues/newsletter" element={<Modals />} />
       </Routes>
-    </>
+      
+      <Routes>
+        <Route index element={<Faq />} />
+      </Routes>
+      <Routes>
+        <Route index element={<Footer />} />
+      </Routes>
+      </>
   );
 };
 
