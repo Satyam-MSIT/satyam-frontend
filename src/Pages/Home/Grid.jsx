@@ -16,12 +16,12 @@ const generateArray = (length) => Array.from({ length });
 
 const Grid = () => {
   const dimensions = useDimensions();
-  const boxSize = useClamp(35, dimensions.width * 0.25, 90);
+  const boxSize = useClamp(50, dimensions.width * 0.25, 100);
   const cols = generateArray(Math.floor((dimensions.width * 10) / boxSize));
   const rows = generateArray(Math.floor((dimensions.height * 10) / boxSize));
 
   return (
-    <div className="absolute inset-0 -z-10 h-[80%] w-full">
+    <div className="absolute inset-0 -z-10 h-[90%] w-full">
       <div className="relative h-full overflow-hidden">
         <GridLines lines={cols} />
         <GridLines lines={rows} rotate={true} />
@@ -30,7 +30,7 @@ const Grid = () => {
           className="absolute top-0 left-0 h-full w-full "
           style={{
             background:
-              "linear-gradient(to bottom,rgba(255,255,255,.9),rgba(255,255,255,.85),rgba(255,255,255,.8),rgba(255,255,255,.8),rgba(250,255,255,.9))",
+              "linear-gradient(to bottom,rgba(255,255,255,.7), rgba(255,255,255,.8),rgba(255,255,255,.85),rgba(255,255,255,.9))",
           }}></div>
       </div>
     </div>

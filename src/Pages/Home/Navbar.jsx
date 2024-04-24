@@ -22,14 +22,22 @@ const NavBarItemDropable = ({ title, subLinks }) => {
       <FaAngleDown className="text-sm" />
       {dropDownState && (
         <FlexCol className="absolute left-1/2 top-full z-10 w-72  animate-[slideInUp_200ms_ease-in_forwards]  rounded-b-xl rounded-t-[.2rem] border-t-2 border-blue bg-white shadow-xl ">
-          {subLinks.map(({ title, link }) => (
-            <Link
-              key={link}
-              to={link}
-              className=" border-b-[.5px] border-gray-400 px-4 py-4  text-center text-base text-black last:border-none hover:text-blue ">
-              {title}
-            </Link>
-          ))}
+          {subLinks.map(({ title, link, onClickHandlerCustom }) =>
+            link ? (
+              <Link
+                key={link}
+                to={link}
+                className=" border-b-[.5px] border-gray-400 px-4 py-4  text-center text-base text-black last:border-none hover:text-blue ">
+                {title}
+              </Link>
+            ) : (
+              <button
+                className=" border-b-[.5px] border-gray-400 px-4 py-4  text-center text-base text-black last:border-none hover:text-blue"
+                onClick={onClickHandlerCustom}>
+                {title}
+              </button>
+            )
+          )}
         </FlexCol>
       )}
     </Flex>
@@ -42,7 +50,7 @@ const Navbar = ({ links }) => {
   return (
     <Flex
       as="nav"
-      className="bg-[rgba(255,255,255,.9)] items-end  justify-center gap-6 lg:gap-12 xl:gap-16 px-4 xsm:px-8 sm:px-12 md:px-4 lg:px-8 xl:px-12  pb-4 ">
+      className="bg-white items-end  justify-center gap-6 lg:gap-12 xl:gap-16 px-4 xsm:px-8 sm:px-12 md:px-4 lg:px-8 xl:px-12  pb-4 ">
       {!isMobile && (
         <>
           <NavLink to="/" className="group pb-4">

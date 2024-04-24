@@ -1,30 +1,25 @@
 // Third party modules
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { MdOutlineArticle as ArticlesAndIssuesIcon } from "react-icons/md";
 
 // User Modules
-import HeroLanding from "./Landing/HeroLanding";
-import Grid from "./Grid";
-import PublicationProcess from "./Landing/PublicationProcess";
 import Header from "./Header";
 import Navbar from "./Navbar";
-import Hero from "./Hero";
-import About from "./About/About";
-import Faq from "./Faq";
-import EditorsPage from "./EditorsPage";
-
-import Modals from "./Modal";
-import Footer from "./Footer";
+import HeroLanding from "./Landing/HeroLanding";
 import SideBar from "../../Components/SideBar";
-
-import { LuLayoutDashboard as DashboardIcon } from "react-icons/lu";
-import { LuNewspaper as CallPaperIcon } from "react-icons/lu";
-import { TfiAnnouncement as AnnouncmenntIcon } from "react-icons/tfi";
-import { CgWebsite as ManageWebsiteIcon } from "react-icons/cg";
-import { BsJournals as JournalsIcon } from "react-icons/bs";
-import { LuUsers as UsersIcon } from "react-icons/lu";
-import { HiOutlineMenuAlt2 as MenuIcon } from "react-icons/hi";
 import useDimensions from "../../Hooks/useDimensions";
+
+import Grid from "./Grid";
+import PublicationProcess from "./Landing/PublicationProcess";
+import Hero from "./bin/Hero";
+import About from "./Landing/About";
+import Faq from "./bin/Faq";
+import EditorsPage from "./bin/EditorsPage";
+
+import Modals from "./bin/Modal";
+import Footer from "./bin/Footer";
+import { useEffect } from "react";
 
 const Landing = () => {
   const isMobile = useDimensions().width < 768;
@@ -35,11 +30,20 @@ const Landing = () => {
   const handleNewLetterModalToggle = () => setNewLetterModal((state) => (state === "hidden" ? "shown" : "hidden"));
 
   const links = [
+    // TODO replace about and publish icon
+
     {
-      Icon: DashboardIcon,
+      Icon: ArticlesAndIssuesIcon,
       title: "About",
       subLinks: [
-        { link: "/#aboutus", title: "About us" },
+        {
+          title: "About us",
+          onClickHandlerCustom: () => {
+            const anchor = document.createElement("a");
+            anchor.href = "/#aboutus";
+            anchor.click();
+          },
+        },
         { link: "/aboutinstitute", title: "About Institute" },
         { link: "/aim", title: "Aim & Scope" },
         { link: "/abstract", title: "Abstract & Indexing" },
@@ -48,7 +52,7 @@ const Landing = () => {
       ],
     },
     {
-      Icon: DashboardIcon,
+      Icon: ArticlesAndIssuesIcon,
       title: "Publish",
       subLinks: [
         { link: "/guidelines", title: "Guidelines for author" },
@@ -60,10 +64,10 @@ const Landing = () => {
       ],
     },
     {
-      Icon: DashboardIcon,
+      Icon: ArticlesAndIssuesIcon,
       title: "Articles & Issues",
       subLinks: [
-        { link: "/issue/lates", title: "Latest Issue" },
+        { link: "/issue/latest", title: "Latest Issue" },
         { link: "/issues", title: "All Issues" },
         { link: "/issues/special", title: "Special Issues" },
         {
@@ -79,17 +83,16 @@ const Landing = () => {
 
   return (
     <>
+      <Header handleNavStateToggle={handleNavStateToggle} />
+      <Navbar links={links} />
+      {isMobile && <SideBar links={links} navState={navState} navStateToggleHandler={handleNavStateToggle} />}
       <div className="relative mb-20 pb-12">
         <Grid />
-        <Header handleNavStateToggle={handleNavStateToggle} />
-        <Navbar links={links} />
-        {isMobile && <SideBar links={links} navState={navState} navStateToggleHandler={handleNavStateToggle} />}
-
-        <header className="bg-[rgba(255,255,255,.4)]"></header>
         <HeroLanding />
         <About />
+        <PublicationProcess />
 
-        <Routes>
+        {/* <Routes>
           <Route index element={<HeroLanding />} />
           <Route
             path="/aboutus"
@@ -102,7 +105,7 @@ const Landing = () => {
               />
             }
           />
-        </Routes>
+        </Routes> */}
       </div>
       {/* <Routes>
         <Route index element={<About />} />

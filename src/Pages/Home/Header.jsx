@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { Flex } from "../../Elements/Flex";
 import Logo from "../../Components/Logo";
 import ProfileImage from "./../../Components/ProfileImage";
+import { BtnBlack } from "../../Elements/Button";
 
 const Header = ({ handleNavStateToggle }) => {
   const user = useSelector((state) => state.user);
@@ -14,7 +15,7 @@ const Header = ({ handleNavStateToggle }) => {
   return (
     <Flex
       as="header"
-      className="bg-[rgba(255,255,255,.9)] pb-7 items-center  gap-2 sm:gap-3 md:gap-5 px-3 mt-3 xsm:px-4 sm:px-5  md:px-8">
+      className="bg-white pb-7 items-center  gap-2 sm:gap-3 md:gap-5 px-3 mt-3 xsm:px-4 sm:px-5  md:px-8">
       <HiOutlineMenuAlt2 className="text-4xl sm:text-4xl md:hidden" onClick={handleNavStateToggle} />
 
       <Flex as={Link} to="/" className="items-center gap-1 xsm:gap-2 sm:gap-3 md:gap-4">
@@ -46,11 +47,9 @@ const Header = ({ handleNavStateToggle }) => {
               className="hidden hover:bg-gray-100 transition-all md:block px-5 py-2 rounded-xl border-2 font-medium text-lg text-[#232323] border-gray-300">
               Log in
             </Link>
-            <Link
-              to="/auth/signup"
-              className="bg-blue transition-all text-white text-xs hover:text-gray-200 xsm:text-sm  sm:text-base md:text-lg px-3 xsm:px-4 sm:px-5 py-2 rounded-lg">
+            <BtnBlack as={Link} to="/auth/signup">
               Get Started
-            </Link>
+            </BtnBlack>
           </>
         )}
       </Flex>
