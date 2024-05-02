@@ -9,6 +9,7 @@ import Navbar from "./Navbar";
 import HeroLanding from "./Landing/HeroLanding";
 import SideBar from "../../Components/SideBar";
 import useDimensions from "../../Hooks/useDimensions";
+import ScrollToTop from "../../Components/ScrollToTop";
 
 import Grid from "./Grid";
 import PublicationProcess from "./Landing/PublicationProcess";
@@ -31,7 +32,6 @@ const Landing = () => {
 
   const links = [
     // TODO replace about and publish icon
-
     {
       Icon: ArticlesAndIssuesIcon,
       title: "About",
@@ -40,7 +40,7 @@ const Landing = () => {
           title: "About us",
           onClickHandlerCustom: () => {
             const anchor = document.createElement("a");
-            anchor.href = "/#aboutus";
+            anchor.href = "#aboutus";
             anchor.click();
           },
         },
@@ -124,6 +124,7 @@ const Landing = () => {
       <Routes>
         <Route index element={<Footer />} />
       </Routes> */}
+      <ScrollToTop />
     </>
   );
 };

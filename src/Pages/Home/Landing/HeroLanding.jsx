@@ -38,7 +38,7 @@ const HeroLanding = () => {
         className="mt-10 mb-8 xsm:mb-10 sm:mb-12  items-center gap-4 rounded-3xl bg-white py-[.4rem] pl-2 pr-4 shadow-[0_1px_10px_1px_rgba(0,0,0,.2)]">
         <button className="rounded-[2rem] bg-blue px-4 py-1  text-white">New</button>
         <span className="bold text-sm font-medium" title={label}>
-          {label.length > 20 ? label.slice(0, 20) + "...." : label}
+          {label.length > 25 ? label.slice(0, 25) + "...." : label}
         </span>
         <FaAngleRight className="text-lg" />
       </Flex>

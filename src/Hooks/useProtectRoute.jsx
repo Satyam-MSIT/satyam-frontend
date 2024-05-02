@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 // User imports
 import { storeValidator } from "../validators/store";
+import getRoute from "../Functions/getRoute";
 
 // allowedUser values
 // "author" - "author"
@@ -21,11 +22,9 @@ const useProtectRoute = (allowedUser) => {
     if (storeValidator.safeParse(user).error) {
       navigate(`/auth/login?redirect=${path}`);
       toast.error("To continue, please sign in to your account.");
-    } else {
-      if (!user.current_role.includes(allowedUser)) {
-        navigate(`/${allowedUser}`);
-        toast.error("You are not allowed to access this page");
-      }
+    } else if (!user.current_role.includes(allowedUser)) {
+      navigate(getRoute(user.current_role));
+      toast.error("You are not allowed to access this page");
     }
   }, [user]);
 };
