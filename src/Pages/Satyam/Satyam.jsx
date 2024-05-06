@@ -71,7 +71,7 @@ const Satyam = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const path = window.location.pathname;
-    navigate("/satyam/dashboard", { replace: true });
+    if (path === "/satyam") navigate("/satyam/dashboard", { replace: true });
   }, []);
 
   const [navState, setNavState] = useState("collapsed");
@@ -83,7 +83,7 @@ const Satyam = () => {
         <SideBar links={links} navState={navState} navStateToggleHandler={handleNavStateToggle} />
 
         <Main>
-          <Flex className="items-center justify-stretch border-b-[1px] border-gray-300 bg-white py-3">
+          <Flex className="items-center justify-stretch border-b-[1px] border-gray-300 bg-white ">
             <div
               className="border-r-[1px] border-r-gray-300 px-2 text-3xl xsm:px-3 sm:px-4 md:hidden"
               onClick={handleNavStateToggle}>

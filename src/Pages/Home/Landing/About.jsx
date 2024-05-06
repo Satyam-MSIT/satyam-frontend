@@ -40,7 +40,7 @@ const cards = [
 
 const About = () => {
   return (
-    <section id="aboutus" className="text-center bg-[rgb(240,241,250)] pt-16 pb-16">
+    <section id="aboutus" className="text-center bg-[rgb(240,241,250)] pt-16 pb-16 mb-12">
       <h2 className="text-xl sm:text-2xl tracking-wide font-bold  text-blue mb-5">ABOUT US</h2>
       <h3 className="text-[#373737] text-3xl xsm:text-4xl sm:text-5xl md:text-6xl  font-bold leading-snug  mx-4 mb-10">
         The leading research

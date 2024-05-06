@@ -34,7 +34,7 @@ const Headings = ({ heading, isSort = true, onChangeStateHandler }) => {
   return (
     <th className="py-4 group  first-of-type:pl-4 last-of-type:pr-4  ">
       <FlexCenter className="gap-4 group-first-of-type:justify-start  justify-center">
-        <h4 className="text-lg tracking-wide font-semibold text-[#131313]">{heading}</h4>
+        <h4 className="text-base md:text-lg tracking-wide font-semibold text-[#131313]">{heading}</h4>
         {isSort && (
           <FaSort className="text-lg hover:text-black transition-all text-[#b9b9b9]" onClick={onChangeStateHandler} />
         )}
@@ -44,14 +44,15 @@ const Headings = ({ heading, isSort = true, onChangeStateHandler }) => {
 };
 
 const Button = styled(Center).attrs({
-  className: "gap-2 px-6 py-1 rounded-md transition-all text-lg border-[1px] border-blue",
+  className: "gap-2 px-4 md:px-6  py-2 rounded-md transition-all text-xs sm:text-base  border-[1px] border-blue",
 })``;
 
 const ManageUsers = () => {
   const [filterRole, setFilterRole] = useState("*");
   const [filterState, setFilterState] = useState("*");
   const [sortName, setSortName] = useState("asc"); // "asc" or "desc"
-  const [sortEmail, setSortEmail] = useState("asc");
+  const [sortEmail, setSortEmail] = useState("asc"); // "asc" or "desc"
+  const [searchInput, setSearchInput] = useState("");
   const [modalState, setModalState] = useState("closed"); //"open" or "closed"
   const [paginate, setPaginate] = useState(1);
 
@@ -62,98 +63,109 @@ const ManageUsers = () => {
   const filterStateToggleHandler = (event) => setFilterState(event.target.value);
   const sortNameToggleHandler = () => setSortName((sort) => (sort === "asc" ? "desc" : "asc"));
   const sortEmailToggleHandler = () => setSortEmail((sort) => (sort === "asc" ? "desc" : "asc"));
+  const handleSearchInputChange = (event) => setSearchInput(event.current.value);
   const modalStateToggleHandler = () => setModalState((state) => (state === "open" ? "closed" : "open"));
   const handlePaginatePrev = () => setPaginate((paginate) => (paginate == 1 ? paginate : paginate - 1));
   const handlePaginateNext = () => setPaginate((paginate) => (paginate == noPages ? paginate : paginate + 1));
 
   return (
-    <section className="ml-12 mr-8  mt-8 mb-6 p-4  rounded-lg bg-white">
-      <FlexCenter className=" justify-between gap-6 mb-6">
-        <h2 className="text-lg font-bold">
+    <section className="ml-2 md:ml-6 lg:ml-10 mr-2 lg:mr-8   mt-6 mb-6 p-4  rounded-lg bg-white">
+      <FlexCenter className=" justify-between gap-2 md:gap-6 mb-4 sm:mb-6 ">
+        <h2 className="text-base sm:text-lg font-bold">
           Manage Users <span className="font-mono ml-1 text-gray-500">({users.length})</span>
         </h2>
 
-        <div className="grid grid-cols-[1fr_1fr] gap-6 items-stretch">
+        <div className="grid grid-cols-[1fr_1fr] gap-4 md:gap-6 items-stretch">
           <Button
             as="button"
             className=" hover:text-white hover:bg-blue text-blue "
             onClick={() => generateExcel(users, ["name", "email", "role", "status", "profile", "_id"])}>
-            <CiExport className="text-xl" />
-            Export
+            <CiExport className="text-lg md:text-xl" />
+            <span className="hidden sm:block">Export</span>
           </Button>
           <Button
             as="button"
             className="gap-2 hover:text-blue  hover:bg-white  bg-blue text-white"
             onClick={modalStateToggleHandler}>
-            <IoAdd className="text-xl" />
-            Add User
+            <IoAdd className="text-lg md:text-xl" />
+            <span className="hidden sm:block">Add User</span>
           </Button>
         </div>
       </FlexCenter>
 
-      <FlexCenter className="mb-6 justify-between">
-        <FlexCenter className=" gap-4 w-2/5 bg-slate-50 rounded-2xl py-3 px-4">
+      <Flex className="flex-col md:flex-row gap-3 mb-6 justify-between">
+        <FlexCenter className=" gap-4 w-full md:w-3/5 md:max-w-sm bg-slate-50 rounded-2xl py-3 px-4">
           <FiSearch className="text-2xl text-gray-500"></FiSearch>
           <input
+            value={searchInput}
+            onChange={handleSearchInputChange}
             type="text"
             className="border-none focus:outline-none w-full bg-transparent  placeholder:tracking-wide placeholder:text-gray-500"
             placeholder="Search by name, email, role"
           />
         </FlexCenter>
-        <div className="grid gap-6 w-1/3 grid-cols-[1fr_1fr]">
+        <div className="grid gap-2 xsm:gap-4 sm:gap-6  w-full  md:w-[40%] grid-cols-[1fr_1fr]">
           <Select options={roleOptions} onChangeHandler={filterRoleToggleHandler} />
           <Select options={stateOptions} onChangeHandler={filterStateToggleHandler} />
         </div>
-      </FlexCenter>
+      </Flex>
 
-      <table className="w-full rounded-t-2xl overflow-hidden">
-        <tr className="bg-[#f4f4f4]">
-          <Headings heading="Member name" onChangeStateHandler={sortNameToggleHandler} />
-          <Headings heading="Email" onChangeStateHandler={sortEmailToggleHandler} />
-          <Headings heading="Role" isSort={false} />
-          <Headings heading="Status" isSort={false} />
-          <Headings heading="Delete" isSort={false} />
-        </tr>
-
-        {filteredUsers.slice(10 * (paginate - 1), Math.min(10 * paginate, filteredUsers.length)).map((user) => (
-          <tr key={user.email} className="text-[#585858]">
-            <FlexCenter as="td" className="gap-4 pl-4 py-3 ">
-              <div className="w-10 h-10">
-                {user.image ? (
-                  <img src={user.image} alt={user.name} className="w-full aspect-square object-cover object-center" />
-                ) : (
-                  <ProfileImage name={user.name} fontSize={"text-sm"} />
-                )}
-              </div>
-              <p className="tracking-wide font-normal">{user.name}</p>
-            </FlexCenter>
-
-            <td className="py-3 text-center tracking-wide"> {user.email}</td>
-
-            <td className="py-3">
-              <p
-                className={`px-6 py-2 rounded-3xl w-fit mx-auto  ${user.role === "satyam-member" && "text-slate-700 bg-slate-100"} ${user.role === "satyam-chief-editor" && "text-yellow-600 bg-yellow-50"} ${user.role === "satyam-admin" && "text-green-500 bg-green-100"}`}>
-                {user.role === "satyam-member" ? "Member" : user.role === "satyam-admin" ? "Admin" : "Chief Editor"}
-              </p>
-            </td>
-
-            <td className="py-3">
-              <FlexCenter className="justify-center gap-3">
-                <span
-                  className={`w-3 h-3 rounded-full ${user.status === "active" ? "bg-green-600" : "bg-red-500 animate-pulse"}`}
-                />
-                <p className={`${user.status === "active" ? "text-green-600" : "text-red-500"}`}>
-                  {user.status[0].toUpperCase() + user.status.slice(1)}
-                </p>
-              </FlexCenter>
-            </td>
-
-            <td className="py-3 ">
-              <RiDeleteBin6Line className="text-xl mx-auto text-red-400 hover:text-red-700" />
-            </td>
+      <div className="overflow-scroll">
+        <table className="rounded-t-2xl whitespace-nowrap">
+          <tr className="bg-[#f4f4f4]">
+            <Headings heading="Member name" onChangeStateHandler={sortNameToggleHandler} />
+            <Headings heading="Email" onChangeStateHandler={sortEmailToggleHandler} />
+            <Headings heading="Role" isSort={false} />
+            <Headings heading="Status" isSort={false} />
+            <Headings heading="Delete" isSort={false} />
           </tr>
-        ))}
-      </table>
+
+          {filteredUsers.slice(10 * (paginate - 1), Math.min(10 * paginate, filteredUsers.length)).map((user) => (
+            <tr key={user.email} className="text-[#585858] ">
+              <td className="align-middle pl-4 py-3">
+                <FlexCenter className="gap-4">
+                  <div className="w-10 h-10 hidden md:block">
+                    {user.image ? (
+                      <img
+                        src={user.image}
+                        alt={user.name}
+                        className="w-full aspect-square object-cover object-center"
+                      />
+                    ) : (
+                      <ProfileImage name={user.name} fontSize={"text-sm"} />
+                    )}
+                  </div>
+                  <p className="tracking-wide font-normal">{user.name}</p>
+                </FlexCenter>
+              </td>
+
+              <td className="py-3 text-center tracking-wide"> {user.email}</td>
+
+              <td className="py-3">
+                <p
+                  className={`px-6 py-2 rounded-3xl w-fit mx-auto  ${user.role === "satyam-member" && "text-slate-700 bg-slate-100"} ${user.role === "satyam-chief-editor" && "text-yellow-600 bg-yellow-50"} ${user.role === "satyam-admin" && "text-green-500 bg-green-100"}`}>
+                  {user.role === "satyam-member" ? "Member" : user.role === "satyam-admin" ? "Admin" : "Chief Editor"}
+                </p>
+              </td>
+
+              <td className="py-3">
+                <FlexCenter className="justify-center gap-3">
+                  <span
+                    className={`w-3 h-3 rounded-full ${user.status === "active" ? "bg-green-600" : "bg-red-500 animate-pulse"}`}
+                  />
+                  <p className={`${user.status === "active" ? "text-green-600" : "text-red-500"}`}>
+                    {user.status[0].toUpperCase() + user.status.slice(1)}
+                  </p>
+                </FlexCenter>
+              </td>
+
+              <td className="py-3 ">
+                <RiDeleteBin6Line className="text-xl mx-auto text-red-400 hover:text-red-700" />
+              </td>
+            </tr>
+          ))}
+        </table>
+      </div>
 
       <FlexCenter className="justify-center gap-5 my-6">
         <button

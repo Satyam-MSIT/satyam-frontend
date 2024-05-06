@@ -21,6 +21,7 @@ import EditorsPage from "./bin/EditorsPage";
 import Modals from "./bin/Modal";
 import Footer from "./bin/Footer";
 import { useEffect } from "react";
+import FAQ from "./Landing/FAQ";
 
 const Landing = () => {
   const isMobile = useDimensions().width < 768;
@@ -86,44 +87,13 @@ const Landing = () => {
       <Header handleNavStateToggle={handleNavStateToggle} />
       <Navbar links={links} />
       {isMobile && <SideBar links={links} navState={navState} navStateToggleHandler={handleNavStateToggle} />}
-      <div className="relative mb-20 pb-12">
+      <div className="relative ">
         <Grid />
         <HeroLanding />
         <About />
         <PublicationProcess />
-
-        {/* <Routes>
-          <Route index element={<HeroLanding />} />
-          <Route
-            path="/aboutus"
-            element={
-              <Hero
-                heading="About us"
-                desc=" Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard"
-                id="#aboutus"
-              />
-            }
-          />
-        </Routes> */}
       </div>
-      {/* <Routes>
-        <Route index element={<About />} />
-      </Routes>
-      <Routes>
-        <Route index element={<PublicationProcess />} />
-        <Route path="/aboutus" element={<About />} />
-        <Route path="/faq" element={<Faq />} />
-        <Route path="/editorspage" element={<EditorsPage />} />
-        <Route path="/issues/newsletter" element={<Modals />} />
-      </Routes>
-
-      <Routes>
-        <Route index element={<Faq />} />
-      </Routes>
-      <Routes>
-        <Route index element={<Footer />} />
-      </Routes> */}
+      <FAQ />
       <ScrollToTop />
     </>
   );
