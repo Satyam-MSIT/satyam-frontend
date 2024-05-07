@@ -7,6 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import useinitAuth from "./Hooks/useinitAuth";
 import Loader from "./Components/Loader";
 import Profile from "./Pages/Reviewer/Profile";
+const CopyRightForm = lazy(() => import("./Pages/Publish/Copyrightform"));
+const IEEEformat = lazy(() => import("./Pages/Publish/IEEEformat"));
+const GuideLines = lazy(() => import("./Pages/Publish/GuideLines"));
 const Landing = lazy(() => import("./Pages/Home/Landing"));
 const Satyam = lazy(() => import("./Pages/Satyam/Satyam"));
 const Auth = lazy(() => import("./Pages/Auth/Auth"));
@@ -28,6 +31,9 @@ const App = () => {
           <Route path="/author/upload/*" element={<Upload />} />
           <Route path="/author/*" element={<Author />} />
           <Route path="/reviewer" element={<Reviewer />} />
+          <Route path="/guidelines" element={<GuideLines />} />
+          <Route path="/ieeeformat" element={<IEEEformat />} />
+          <Route path="/copyrightform" element={<CopyRightForm />} />
           <Route path="/reviewer/dashboard/:id" element={<Dashboard />} />
           <Route path="/reviewer/profile" element={<Profile />} />
         </Routes>
