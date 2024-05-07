@@ -15,22 +15,25 @@ const Searchbar = () => {
   const inputStateToggleHandler = () => setInputState((state) => (state === "collapsed" ? "open" : "collapsed"));
 
   return (
-    <Flex className="flex-1 h-10 items-center gap-6 pl-3 pr-2 xsm:pr-4 sm:pr-6 xsm:gap-5 xsm:pl-5 sm:gap-6  md:pl-8 ">
-      <Flex className="items-center gap-2 xsm:gap-3 sm:gap-4">
-        <FiSearch className="text-xl text-[#424242]  xsm:text-2xl sm:text-[1.6rem]" onClick={inputStateToggleHandler} />
+    <Flex className="w-full h-20 sm:h-16 items-center gap-6 pl-3 pr-2 xsm:pr-4 sm:pr-6 xsm:gap-5 xsm:pl-5 sm:gap-6  md:pl-8 ">
+      {/* Input panel */}
+      <Flex className="flex-1 items-center gap-2 xsm:gap-3 sm:gap-4">
+        <FiSearch className="text-xl text-[#424242] xsm:text-2xl sm:text-[1.6rem]" onClick={inputStateToggleHandler} />
         <input
           type="text"
-          placeholder="Find anything here"
-          className={`w-0 duration-500 ${inputState === "open" && "w-auto max-w-40"} transition-all sm:w-auto  bg-transparent text-lg placeholder:text-base placeholder:text-[#a4a3ba]  focus:outline-none xsm:placeholder:text-lg`}
+          placeholder="Find by author, title and keywords"
+          className={`w-0 ${inputState === "open" && "w-full"} sm:w-full  bg-transparent text-base placeholder:text-base placeholder:text-[#a4a3ba] focus:outline-none xsm:placeholder:text-base`}
         />
         {inputState === "open" && <IoClose className="text-2xl ml-auto sm:hidden" onClick={inputStateToggleHandler} />}
       </Flex>
 
-      <div className={`relative ml-auto inline-block transition-all  ${inputState === "open" && "hidden"} sm:block`}>
+      {/* Notification button */}
+      <div className={`relative ml-auto transition-all  ${inputState === "open" && "hidden "} sm:block`}>
         <FaRegBell className="text-xl xsm:text-2xl" />
         <div className="absolute left-full top-0 -translate-x-1/2 rounded-full bg-red-500 p-1" />
       </div>
 
+      {/* User profile */}
       <div className={`items-center gap-3 ${inputState === "open" ? "hidden" : "flex"} sm:flex`}>
         <div className={`h-10 w-10 xsm:w-12 xsm:h-12 transition-all  `}>
           {user.image ? (
@@ -44,8 +47,8 @@ const Searchbar = () => {
           )}
         </div>
 
-        <div className="-gap-5 hidden xsm:block flex-col">
-          <h3 className="text-lg font-semibold">Jane K Doll</h3>
+        <div className="-gap-5  flex-col">
+          <h3 className="text-lg font-semibold">{user.name}</h3>
           <p className="text-[#424242] text-xs">{user.email}</p>
         </div>
       </div>

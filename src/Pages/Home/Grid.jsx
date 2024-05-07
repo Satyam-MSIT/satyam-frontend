@@ -16,7 +16,7 @@ const generateArray = (length) => Array.from({ length });
 
 const Grid = () => {
   const dimensions = useDimensions();
-  const boxSize = useClamp(50, dimensions.width * 0.25, 100);
+  const boxSize = useClamp(50, dimensions.width * 0.25, 90);
   const cols = generateArray(Math.floor((dimensions.width * 10) / boxSize));
   const rows = generateArray(Math.floor((dimensions.height * 10) / boxSize));
 

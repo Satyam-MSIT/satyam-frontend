@@ -1,39 +1,44 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import Button from "./Components/Button";
+import { MdDeleteOutline as DeleteIcon } from "react-icons/md";
 
 import styles from "./Author.module.css";
 
-const ReviewerDetails = ({
-  nextStep,
-  handleChange,
-  handleReviewers,
-  formData,
-  prevStep,
-  setFormData,
-}) => {
-  const { reviewers } = formData;
+const ReviewerDetails = ({ nextStep, formData, prevStep, setFormData }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     nextStep();
   };
-
-  const [allReviewers, setReviewers] = useState([]);
-
+  const prevReviewers = formData.reviewers;
+  const [allReviewers, setReviewers] = useState(prevReviewers);
   const addReviewer = (e) => {
     e.preventDefault();
     const newReviewer = {
-      name: formData.reviewers.name,
-      email: formData.reviewers.email,
+      name: name,
+      email: email,
     };
-    setReviewers([...allReviewers, newReviewer]);
+
+    const updatedReviewers = [...allReviewers, newReviewer];
+    setReviewers(updatedReviewers);
 
     setFormData({
-      reviewers: {
-        name: "",
-        email: "",
-      },
+      ...formData,
+      reviewers: updatedReviewers,
     });
+
+    setName("");
+    setEmail("");
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   const checkData = () => {
@@ -42,6 +47,14 @@ const ReviewerDetails = ({
     } else {
       return false;
     }
+  };
+
+  const handleDelete = (name) => {
+    const updatedReviewers = allReviewers.filter(
+      (reviewer) => reviewer.name != name
+    );
+    setReviewers(updatedReviewers);
+    setFormData({ ...formData, reviewers: updatedReviewers });
   };
 
   return (
@@ -54,10 +67,10 @@ const ReviewerDetails = ({
         <input
           type="text"
           name="name"
-          value={reviewers.name}
+          value={name}
           placeholder="Name"
           className={styles.input}
-          onChange={handleReviewers}
+          onChange={handleNameChange}
         />
         <label for="name" className="text-xl">
           Email
@@ -65,41 +78,52 @@ const ReviewerDetails = ({
         <input
           type="text"
           name="email"
-          value={reviewers.email}
+          value={email}
           placeholder="someone@email.com"
           className={styles.input}
-          onChange={handleReviewers}
+          onChange={handleEmailChange}
         />
       </div>
 
       {allReviewers.length > 0 ? (
-        <div className="p-4 my-12 w-3/5">
-          <h1 className="text-2xl text-blue font-bold">Reviewers</h1>
-          <table className="w-full my-4 text-lg border-separate border-spacing-y-2">
-            <thead>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8 w-4/5 mb-6">
+          <table class="w-full text text-left rtl:text-right ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
               <tr>
-                <th>Name</th>
-                <th>University</th>
+                <th scope="col" className="px-6 py-3">
+                  Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Email
+                </th>
+                <th scope="col" className="px-6 py-3"></th>
               </tr>
             </thead>
             <tbody>
               {allReviewers.map((reviewer) => (
-                <tr
-                  key={reviewer.name}
-                  className="odd:bg-slate-100 border  text-center"
-                >
-                  <td>{reviewer.name}</td>
-                  <td>{reviewer.email}</td>
+                <tr className="bg-white border-b  hover:bg-gray-50 ">
+                  <td className="px-6 py-2  text-gray-900  ">
+                    {reviewer.name}
+                  </td>
+                  <td className="px-6 py-2  text-gray-900  ">
+                    {reviewer.email}
+                  </td>
+                  <td
+                    className="  text-gray-900  "
+                    onClick={() => handleDelete(reviewer.name)}
+                  >
+                    <DeleteIcon className="text-xl hover:cursor-pointer hover:text-red-500" />
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       ) : (
-        <p className="text-xl mb-20">No Reviewers Added</p>
+        <p className="text-xl mb-20 font-medium">No Reviewers Added</p>
       )}
 
-      <div className="border-t-2  border-slate-200 bg-white py-4  ">
+      <div className="border-t-2  border-slate-200 py-4">
         <Button onClick={prevStep} className="mr-4">
           Back
         </Button>

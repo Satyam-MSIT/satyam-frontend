@@ -1,9 +1,8 @@
 // Third party
 import { lazy, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import axios from "axios";
 
 import { LuLayoutDashboard as DashboardIcon } from "react-icons/lu";
 import { LuNewspaper as CallPaperIcon } from "react-icons/lu";
@@ -17,9 +16,10 @@ import { HiOutlineMenuAlt2 as MenuIcon } from "react-icons/hi";
 import SideBar from "../../Components/SideBar";
 import Searchbar from "./Searchbar";
 import { Flex } from "../../Elements/Flex";
-import { useEffect } from "react";
 import useProtectRoute from "../../Hooks/useProtectRoute";
-const Dashboard = lazy(() => import("./Dashboard/Dashboard"));
+import Dashboard from "./Dashboard/Dashboard";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const ManageUsers = lazy(() => import("./ManageUsers/ManageUsers"));
 
 const links = [
@@ -64,7 +64,15 @@ const Main = styled.main.attrs({
 `;
 
 const Satyam = () => {
+  // Checking whether the page is accessible to the user or not
   useProtectRoute("satyam");
+
+  // navigate the request to /satyam to /satyam/dashboard
+  const navigate = useNavigate();
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === "/satyam") navigate("/satyam/dashboard", { replace: true });
+  }, []);
 
   const [navState, setNavState] = useState("collapsed");
   const handleNavStateToggle = () => setNavState((state) => (state === "collapsed" ? "open" : "collapsed"));
@@ -73,8 +81,9 @@ const Satyam = () => {
     <div className="overflow-x-hidden">
       <div className="relative block  md:inline-block ">
         <SideBar links={links} navState={navState} navStateToggleHandler={handleNavStateToggle} />
+
         <Main>
-          <Flex className="items-center justify-stretch border-b-[1px] border-gray-300 bg-white py-3">
+          <Flex className="items-center justify-stretch border-b-[1px] border-gray-300 bg-white ">
             <div
               className="border-r-[1px] border-r-gray-300 px-2 text-3xl xsm:px-3 sm:px-4 md:hidden"
               onClick={handleNavStateToggle}>
@@ -84,7 +93,6 @@ const Satyam = () => {
           </Flex>
 
           <Routes>
-            <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="manageusers" element={<ManageUsers />} />
           </Routes>

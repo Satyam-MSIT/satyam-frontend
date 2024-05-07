@@ -15,7 +15,7 @@ const Header = ({ handleNavStateToggle }) => {
   return (
     <Flex
       as="header"
-      className="bg-white pb-7 items-center  gap-2 sm:gap-3 md:gap-5 px-3 mt-3 xsm:px-4 sm:px-5  md:px-8">
+      className="bg-white pb-4 items-center  gap-2 sm:gap-3 md:gap-5 px-3 mt-3 xsm:px-4 sm:px-5  md:px-8">
       <HiOutlineMenuAlt2 className="text-4xl sm:text-4xl md:hidden" onClick={handleNavStateToggle} />
 
       <Flex as={Link} to="/" className="items-center gap-1 xsm:gap-2 sm:gap-3 md:gap-4">

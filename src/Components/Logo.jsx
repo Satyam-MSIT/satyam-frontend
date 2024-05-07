@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 const Logo = ({ size = 3, type = "long", className }) => { 
   return (
     <h1 className={`text-[${size}rem] font-extrabold tracking-wide text-[#333] ${className}`}>
-      <span className="text-[80%] text-blue xsm:text-[110%] sm:text-[120%]">S</span>
-      {type === "long" && <span className="text-[66.67%] xsm:text-[91.67%] sm:text-[100%]">atyam</span>}
+      <span className="text-[100%] text-blue xsm:text-[110%] sm:text-[120%]">S</span>
+      {type === "long" && <span className="text-[83.333%] xsm:text-[91.67%] sm:text-[100%]">atyam</span>}
     </h1>
   );
 };

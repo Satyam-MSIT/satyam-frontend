@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import Button from "./Button";
+import Button from "./Components/Button";
 import axios from "axios";
 
 import styles from "./Author.module.css";
@@ -10,12 +10,11 @@ const PaperDetails = ({
   handleChange,
   formData,
   setFormData,
-  prevStep,
   tags,
   setTags,
   handleFile,
 }) => {
-  const { abstract, title, upload, pdf } = formData;
+  const { abstract, title } = formData;
 
   const [input, setInput] = useState("");
 
@@ -56,6 +55,12 @@ const PaperDetails = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const updatedFormData = {
+      ...formData,
+      keywords: tags,
+      uploadFile: "new",
+    };
+    setFormData(updatedFormData);
     nextStep();
   };
 
@@ -63,7 +68,8 @@ const PaperDetails = ({
     if (
       formData.abstract !== "" &&
       formData.title !== "" &&
-      formData.pdf !== ""
+      formData.pdf !== "" &&
+      tags.length !== 0
     ) {
       return true;
     } else {
@@ -102,6 +108,8 @@ const PaperDetails = ({
       console.error("Error:", error.response);
     }
   };
+
+  console.log(formData);
 
   return (
     <div className="max-w-[1024px] mx-auto mt-6">
@@ -173,8 +181,6 @@ const PaperDetails = ({
       </div>
 
       <div className="border-t-2 border-slate-200 py-4">
-        <Button onClick={prevStep}>Back</Button>
-
         {checkData() ? (
           <>
             <Button onClick={handleSubmit} className="float-end">

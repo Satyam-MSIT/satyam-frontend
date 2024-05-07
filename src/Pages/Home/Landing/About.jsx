@@ -1,32 +1,62 @@
-import { FlexCol } from "../../../Elements/Flex";
+// Third party imports
+import { FaFlask, FaLightbulb, FaBriefcase, FaBookOpenReader, FaGlobe } from "react-icons/fa6";
+import { MdOutlineRateReview } from "react-icons/md";
+
+// User Imports
+import Card from "../../../Components/Card";
+
+const cards = [
+  {
+    Icon: FaFlask,
+    title: "Empirical Research",
+    desc: "Explore insightful empirical studies driving innovation and academic discourse.",
+  },
+  {
+    Icon: FaLightbulb,
+    title: "Theoretical Insights",
+    desc: "Delve into theoretical frameworks shaping contemporary research paradigms.",
+  },
+  {
+    Icon: FaBriefcase,
+    title: "Case Studies",
+    desc: "Uncover real-world applications and solutions through in-depth case analyses.",
+  },
+  {
+    Icon: FaBookOpenReader,
+    title: "Literature Reviews",
+    desc: "Navigate comprehensive literature reviews, synthesizing current knowledge and trends.",
+  },
+  {
+    Icon: FaGlobe,
+    title: "Global Participation",
+    desc: "Engage with diverse perspectives and contributions from researchers worldwide.",
+  },
+  {
+    Icon: MdOutlineRateReview,
+    title: "Peer Review",
+    desc: "Upholding rigorous peer-review standards, ensuring scholarly integrity and quality.",
+  },
+];
 
 const About = () => {
   return (
-    <section
-      id="aboutus"
-      className="py-40 mb-20 bg-[#667aff]  flex sm:grid sm:grid-cols-[1fr_1fr] items-center sm:gap-20 flex-col sm:items-start px-6 xsm:px-12 sm:px-16 md:px-20"
-      style={{
-        clipPath: "polygon(0 10%,100% 0%,100% 85%,0 100%)",
-      }}>
-      <FlexCol className="gap-8 items-center sm:items-start">
-        <h2 className="text-5xl text-white">About us</h2>
-        <p className=" text-lg text-white  leading-8">
-          MSIT Journal of Research-SATYAM, ISSN: 2319-7897 is a leading quality & peer-reviewed annually published
-          multidisciplinary Research Journal of Maharaja Surajmal Institute of Technology (MSIT).
-          <br />
-          Satyam provides a platform for researchers, academicians, professionals, practitioners, and students to impart
-          and share knowledge in the form of high-quality empirical and theoretical research papers, case studies, and
-          literature reviews. The journal aims to provide a platform for a diversity of intellectual pursuits from all
-          corners of the society for enrichment and enhancement of the group readers. The Journal welcomes and
-          acknowledges high-quality theoretical and empirical original research papers, review papers, and literature
-          reviews from researchers, academicians, professionals, practitioners, and students from all over the world.
-        </p>
-      </FlexCol>
-      <img
-        className="w-5/6 sm:w-full min-h-fit rounded-2xl aspect-auto"
-        src="https://i.ibb.co/FhgPJt8/Rectangle-116.png"
-        alt="A group of People"
-      />
+    <section id="aboutus" className="text-center bg-[rgb(240,241,250)] pt-16 pb-16 mb-12">
+      <h2 className="text-xl sm:text-2xl tracking-wide font-bold  text-blue mb-5">ABOUT US</h2>
+      <h3 className="text-[#373737] text-3xl xsm:text-4xl sm:text-5xl md:text-6xl  font-bold leading-snug  mx-4 mb-10">
+        The leading research
+        <br /> journal of MSIT
+      </h3>
+
+      <p className="text-[#474b50] mb-12 text-lg mx-8 xsm:mx-8 sm:mx-20 md:mx-32 lg:mx-56 leading-relaxed">
+        Satyam Journal offers a platform for quality research, facilitating knowledge exchange among researchers,
+        professionals, and students worldwide.
+      </p>
+
+      <div className="grid grid-cols-[1fr] md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr] px-8 xsm:px-12 gap-8  md:gap-6 xl:gap-8">
+        {cards.map((card) => (
+          <Card key={card.title} {...card} />
+        ))}
+      </div>
     </section>
   );
 };

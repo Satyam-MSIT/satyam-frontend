@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import PaperDetails from "./PaperDetails";
 import ReviewerDetails from "./ReviewerDetails";
+import Completion from "./Completion";
 
 const Upload = () => {
   const [step, setStep] = useState(1);
@@ -12,12 +13,7 @@ const Upload = () => {
     title: "",
     // uploadFile: "",
     pdf: null,
-    reviewers: [
-      {
-        name: "",
-        email: "",
-      },
-    ],
+    reviewers: [],
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -58,7 +54,7 @@ const Upload = () => {
 
   return (
     <div>
-      <h1 className="text-3xl text-blue font-bold text-center mt-24">
+      <h1 className="text-3xl text-blue font-bold text-center mt-6 ">
         Upload Journal
       </h1>
       <div>
@@ -76,6 +72,16 @@ const Upload = () => {
         )}
         {step == 2 && (
           <ReviewerDetails
+            nextStep={nextStep}
+            prevStep={prevStep}
+            handleChange={handleChange}
+            handleReviewers={handleReviewers}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        )}
+        {step == 3 && (
+          <Completion
             nextStep={nextStep}
             prevStep={prevStep}
             handleChange={handleChange}
