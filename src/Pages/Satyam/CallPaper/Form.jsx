@@ -33,14 +33,14 @@ import { FlexCenter, FlexCol } from "../../../Elements/Flex";
 
 const Btn = styled.button.attrs({
   className:
-    "px-5 tracking-wider cursor-pointer hover:scale-[1.01] active:scale-95 py-2 rounded-md border-blue-600 border-2  transition-all bg-blue-600 text-white  text-lg",
+    "px-5 tracking-wider cursor-pointer hover:scale-[1.01] active:scale-95 py-2 rounded-md border-blue-600 border-2  transition-all  text-lg",
 })``;
 
 const Form = () => {
   const [volumeNo, setVolumeNo] = useState();
   const [title, setTitle] = useState();
   const [keywords, setKeywords] = useState([]);
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   const [desc, setDesc] = useState("");
   const volumeChangeHandler = (event) => setVolumeNo(event.target.value);
   const titleChangeHandler = (event) => setTitle(event.target.value);
@@ -83,11 +83,11 @@ const Form = () => {
         <FlexCenter className="justify-between">
           <Btn
             type="button"
-            className={`bg-white font-medium ${step === 1 ? "text-gray-400 border-gray-400" : "!text-blue-600 border-blue-600"}`}
+            className={`bg-white font-medium ${step === 1 ? "text-gray-400 border-gray-400" : "text-blue-600 border-blue-600"}`}
             onClick={backHandler}>
             Back
           </Btn>
-          <Btn onClick={nextHandler} type="button">
+          <Btn className="text-white bg-blue-600" onClick={nextHandler} type="button">
             {step === 4 ? "Submit" : "Next"}
           </Btn>
         </FlexCenter>
