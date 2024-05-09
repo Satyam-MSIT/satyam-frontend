@@ -9,7 +9,7 @@ const Dashboard = () => {
     <>
       <div className=" flex justify-between max-w-[1240px] mx-auto mt-12">
         <div>
-          <h1 className="text-4xl font-bold text-blue">
+          <h1 className="text-4xl font-bold text-blue-600">
             Welcome <span className="text-black font-semibold">{username}</span>
           </h1>
         </div>

@@ -44,7 +44,7 @@ const Headings = ({ heading, isSort = true, onChangeStateHandler }) => {
 };
 
 const Button = styled(Center).attrs({
-  className: "gap-2 px-4 md:px-6  py-2 rounded-md transition-all text-xs sm:text-base  border-[1px] border-blue",
+  className: "gap-2 px-4 md:px-6  py-2 rounded-md transition-all text-xs sm:text-base  border-[1px] border-blue-600",
 })``;
 
 const ManageUsers = () => {
@@ -78,14 +78,14 @@ const ManageUsers = () => {
         <div className="grid grid-cols-[1fr_1fr] gap-4 md:gap-6 items-stretch">
           <Button
             as="button"
-            className=" hover:text-white hover:bg-blue text-blue "
+            className=" hover:text-white hover:bg-blue-600 text-blue-600 "
             onClick={() => generateExcel(users, ["name", "email", "role", "status", "profile", "_id"])}>
             <CiExport className="text-lg md:text-xl" />
             <span className="hidden sm:block">Export</span>
           </Button>
           <Button
             as="button"
-            className="gap-2 hover:text-blue  hover:bg-white  bg-blue text-white"
+            className="gap-2 hover:text-blue-600  hover:bg-white  bg-blue-600 text-white"
             onClick={modalStateToggleHandler}>
             <IoAdd className="text-lg md:text-xl" />
             <span className="hidden sm:block">Add User</span>
@@ -170,21 +170,21 @@ const ManageUsers = () => {
       <FlexCenter className="justify-center gap-5 my-6">
         <button
           onClick={handlePaginatePrev}
-          className="text-blue text-xl mr-4 transition-all hover:scale-110 active:scale-90">
+          className="text-blue-600 text-xl mr-4 transition-all hover:scale-110 active:scale-90">
           <FaAnglesLeft />
         </button>
         {Array.from({ length: noPages }).map((_, index) => (
           <Center
             key={index}
             className={`text-lg p-6  font-medium  relative  rounded-full transition-all ${
-              paginate === index + 1 ? "bg-slate-200 text-blue" : " text-[#585858] bg-[#f8f8f8] hover:bg-slate-100"
+              paginate === index + 1 ? "bg-slate-200 text-blue-600" : " text-[#585858] bg-[#f8f8f8] hover:bg-slate-100"
             }`}>
             <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">{index + 1}</span>
           </Center>
         ))}
         <button
           onClick={handlePaginateNext}
-          className="text-blue text-xl ml-4 transition-all hover:scale-110 active:scale-90">
+          className="text-blue-600 text-xl ml-4 transition-all hover:scale-110 active:scale-90">
           <FaAnglesRight />
         </button>
       </FlexCenter>

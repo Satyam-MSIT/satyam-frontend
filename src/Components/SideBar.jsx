@@ -21,14 +21,14 @@ const LinkElementWithChild = ({ Icon, title, subLinks, navState, onClickHandler,
 
   return (
     <div className={`grid grid-cols-[1fr_5fr] gap-4 items-center ${className} `}>
-      <Icon className={`text-[1.7rem] text-[#9897b1] ${isActive && "text-blue"}`} />
-      {navState === "open" && <p className={`transition-all text-xl ${isActive && "text-blue"}`}>{title}</p>}
+      <Icon className={`text-[1.7rem] text-[#9897b1] ${isActive && "text-blue-600"}`} />
+      {navState === "open" && <p className={`transition-all text-xl ${isActive && "text-blue-600"}`}>{title}</p>}
 
       <FlexCol className="col-[2/3] gap-3 items-start">
         {subLinks.map(({ link, title, onClickHandlerCustom }) =>
           link ? (
             <NavLink key={title} to={link} onClick={onClickHandler} className="group">
-              <p className={`group-[.active]:text-blue`}>{title}</p>
+              <p className={`group-[.active]:text-blue-600`}>{title}</p>
             </NavLink>
           ) : (
             <button
@@ -53,8 +53,8 @@ const LinkElement = ({ link, Icon, title, navState, onClickHandler, className, i
       className={`group flex items-center gap-4 ${className}`}
       title={title}
       onClick={isMobile && onClickHandler}>
-      <Icon className="text-[1.7rem] text-[#9897b1] group-[.active]:text-blue" />
-      {navState === "open" && <p className="transition-all group-[.active]:text-blue">{title}</p>}
+      <Icon className="text-[1.7rem] text-[#9897b1] group-[.active]:text-blue-600" />
+      {navState === "open" && <p className="transition-all group-[.active]:text-blue-600">{title}</p>}
     </NavLink>
   );
 };

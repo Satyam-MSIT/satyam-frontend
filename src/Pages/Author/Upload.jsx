@@ -54,9 +54,7 @@ const Upload = () => {
 
   return (
     <div>
-      <h1 className="text-3xl text-blue font-bold text-center mt-6 ">
-        Upload Journal
-      </h1>
+      <h1 className="text-3xl text-blue-600 font-bold text-center mt-6 ">Upload Journal</h1>
       <div>
         {step == 1 && (
           <PaperDetails

@@ -96,13 +96,13 @@ const NewUser = ({ hideModalHandler }) => {
               defaultValue="satyam-member"
             />
             <div className="grid grid-cols-[1fr_1fr] items-center gap-4 justify-center mt-2">
-              <button type="submit" className="bg-blue rounded-2xl  text-white py-3">
+              <button type="submit" className="bg-blue-600 rounded-2xl  text-white py-3">
                 Add New User
               </button>
               <button
                 type="button"
                 onClick={hideModalHandler}
-                className="border-blue border-[1px] tracking-wide  rounded-2xl  py-3">
+                className="border-blue-600 border-[1px] tracking-wide  rounded-2xl  py-3">
                 Cancel
               </button>
             </div>

@@ -8,7 +8,7 @@ const StatItem = ({ heading, value }) => {
         <br />
         {heading}
       </h3>
-      <h4 className="text-5xl font-bold text-blue">{value}</h4>
+      <h4 className="text-5xl font-bold text-blue-600">{value}</h4>
     </div>
   );
 };

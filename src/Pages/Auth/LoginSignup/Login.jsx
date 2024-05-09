@@ -97,7 +97,7 @@ const Login = () => {
             error_message="Password must be atleast 8 char long"
           />
         </FlexCol>
-        <Link to="./../forgotpassword" className="mb-4 self-end text-lg text-blue md:text-base">
+        <Link to="./../forgotpassword" className="mb-4 self-end text-lg text-blue-600 md:text-base">
           Forgot Password ?
         </Link>
         <Button>Login</Button>
