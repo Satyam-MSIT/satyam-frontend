@@ -1,6 +1,5 @@
 // Third party modules
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { MdOutlineArticle as ArticlesAndIssuesIcon } from "react-icons/md";
 
 // User Modules
@@ -10,17 +9,9 @@ import HeroLanding from "./Landing/HeroLanding";
 import SideBar from "../../Components/SideBar";
 import useDimensions from "../../Hooks/useDimensions";
 import ScrollToTop from "../../Components/ScrollToTop";
-
 import Grid from "./Grid";
 import PublicationProcess from "./Landing/PublicationProcess";
-import Hero from "./bin/Hero";
 import About from "./Landing/About";
-import Faq from "./bin/Faq";
-import EditorsPage from "./bin/EditorsPage";
-
-import Modals from "./bin/Modal";
-import Footer from "./bin/Footer";
-import { useEffect } from "react";
 import FAQ from "./Landing/FAQ";
 
 const Landing = () => {
