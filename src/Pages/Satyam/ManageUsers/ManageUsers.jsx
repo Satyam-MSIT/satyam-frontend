@@ -110,8 +110,8 @@ const ManageUsers = () => {
         </div>
       </Flex>
 
-      <div className="overflow-scroll">
-        <table className="rounded-t-2xl whitespace-nowrap">
+      <div className="overflow-x-auto">
+        <table className="rounded-t-2xl w-full whitespace-nowrap">
           <tr className="bg-[#f4f4f4]">
             <Headings heading="Member name" onChangeStateHandler={sortNameToggleHandler} />
             <Headings heading="Email" onChangeStateHandler={sortEmailToggleHandler} />

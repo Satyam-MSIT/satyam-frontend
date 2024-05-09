@@ -20,6 +20,7 @@ import useProtectRoute from "../../Hooks/useProtectRoute";
 import Dashboard from "./Dashboard/Dashboard";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import CallPaper from "./CallPaper/CallPaper";
 const ManageUsers = lazy(() => import("./ManageUsers/ManageUsers"));
 
 const links = [
@@ -56,7 +57,7 @@ const links = [
 ];
 
 const Main = styled.main.attrs({
-  className: "md:no-scrollbar  bg-[#f9faff] relative md:absolute md:left-full md:top-0 md:h-full  md:overflow-y-scroll",
+  className: "md:no-scrollbar  relative md:absolute md:left-full md:top-0 md:h-full  md:overflow-y-scroll",
 })`
   @media screen and (min-width: 768px) {
     width: calc(100vw - 100%);
@@ -95,6 +96,7 @@ const Satyam = () => {
           <Routes>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="manageusers" element={<ManageUsers />} />
+            <Route path="callpaper" element={<CallPaper />} />
           </Routes>
         </Main>
       </div>

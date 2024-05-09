@@ -2,6 +2,9 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      ubuntu: ["Ubuntu Sans Mono", "monospace"],
+    },
     extend: {
       colors: {
         darkgrey: "#514F4F",

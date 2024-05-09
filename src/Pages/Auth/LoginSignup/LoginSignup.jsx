@@ -52,20 +52,17 @@ const LoginSignup = () => {
   }, [user]);
 
   return (
-    <main className="px-6 py-12 md:flex md:min-h-screen  md:items-center md:justify-center md:bg-[#f5f5f5] md:px-6 md:py-8 lg:p-8">
+    <main className="px-6 py-6 md:flex md:min-h-screen  md:items-center md:justify-center md:bg-[#f5f5f5] md:px-6 md:py-8 lg:p-8">
       <div className="md:grid md:max-w-screen-2xl md:grid-cols-[.7fr_1.1fr] md:gap-10 md:rounded-2xl md:bg-white lg:gap-16 lg:rounded-3xl ">
         {/* Left Panel */}
         <div
           className="hidden flex-col justify-between gap-32 rounded-2xl px-6 py-8 text-white md:flex lg:rounded-3xl lg:py-12 "
           style={{
             background: radialGradient,
-          }}
-        >
+          }}>
           <FlexCol className="gap-16">
             <Link to="/">
-              <h1 className="text-3xl font-bold tracking-wide lg:text-4xl">
-                Satyam
-              </h1>
+              <h1 className="text-3xl font-bold tracking-wide lg:text-4xl">Satyam</h1>
             </Link>
             <FlexCol className="gap-3 lg:gap-4">
               <h2 className=" text-xl font-medium lg:text-2xl ">
@@ -88,8 +85,7 @@ const LoginSignup = () => {
             loop="true"
             slidesPerView={"auto"}
             modules={[Autoplay]}
-            className=" w-[18rem] lg:w-[25rem]"
-          >
+            className=" w-[18rem] lg:w-[25rem]">
             <SwiperSlide>
               <SwiperElement {...testimonials[0]} />
             </SwiperSlide>
@@ -102,9 +98,9 @@ const LoginSignup = () => {
           </Swiper>
         </div>
 
-        <FlexCol className="items-stretch justify-center gap-20 md:gap-0  md:py-12 md:pr-8 lg:pr-12">
+        <FlexCol className="items-stretch justify-center gap-12 md:gap-0  md:py-12 md:pr-8 lg:pr-12">
           <Link to="/" className="block self-center md:hidden">
-            <Logo type="long" size={6} />
+            <Logo type="long" size={5} />
           </Link>
           <Outlet />
         </FlexCol>
