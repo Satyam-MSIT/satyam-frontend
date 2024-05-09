@@ -21,7 +21,7 @@ const Input = forwardRef(({ type = "text", placeholder, required = true, label, 
       </label>
       <div className="relative">
         <input
-          className={`peer mb-1 w-full rounded-xl border-[1.5px] px-5 py-4 transition-all placeholder:text-[#aaaaaa] placeholder-shown:border-gray-300  invalid:border-red-400 placeholder-shown:invalid:border-gray-300 focus:outline-none focus:valid:border-blue focus:valid:shadow-[0_0_10px_1px_rgba(51,78,255,0.4)] focus:invalid:border-red-400  focus:invalid:shadow-[0_0_10px_1px_rgba(255,0,0,.3)] md:mb-0 md:py-[.7rem] ${type === "password" && "tracking-widest"}`}
+          className={`peer mb-1 w-full rounded-xl border-[1.5px] px-5 py-4 transition-all placeholder:text-[#aaaaaa] placeholder-shown:border-gray-300  invalid:border-red-400 placeholder-shown:invalid:border-gray-300 focus:outline-none focus:valid:border-blue-600 focus:valid:shadow-[0_0_10px_1px_rgba(51,78,255,0.4)] focus:invalid:border-red-400  focus:invalid:shadow-[0_0_10px_1px_rgba(255,0,0,.3)] md:mb-0 md:py-[.7rem] ${type === "password" && "tracking-widest"}`}
           type={type}
           placeholder={placeholder}
           ref={ref}

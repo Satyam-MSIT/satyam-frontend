@@ -21,14 +21,14 @@ const LinkElementWithChild = ({ Icon, title, subLinks, navState, onClickHandler,
 
   return (
     <div className={`grid grid-cols-[1fr_5fr] gap-4 items-center ${className} `}>
-      <Icon className={`text-[1.7rem] text-[#9897b1] ${isActive && "text-blue"}`} />
-      {navState === "open" && <p className={`transition-all text-xl ${isActive && "text-blue"}`}>{title}</p>}
+      <Icon className={`text-[1.7rem] text-[#9897b1] ${isActive && "text-blue-600"}`} />
+      {navState === "open" && <p className={`transition-all text-xl ${isActive && "text-blue-600"}`}>{title}</p>}
 
       <FlexCol className="col-[2/3] gap-3 items-start">
         {subLinks.map(({ link, title, onClickHandlerCustom }) =>
           link ? (
             <NavLink key={title} to={link} onClick={onClickHandler} className="group">
-              <p className={`group-[.active]:text-blue`}>{title}</p>
+              <p className={`group-[.active]:text-blue-600`}>{title}</p>
             </NavLink>
           ) : (
             <button
@@ -53,8 +53,8 @@ const LinkElement = ({ link, Icon, title, navState, onClickHandler, className, i
       className={`group flex items-center gap-4 ${className}`}
       title={title}
       onClick={isMobile && onClickHandler}>
-      <Icon className="text-[1.7rem] text-[#9897b1] group-[.active]:text-blue" />
-      {navState === "open" && <p className="transition-all group-[.active]:text-blue">{title}</p>}
+      <Icon className="text-[1.7rem] text-[#9897b1] group-[.active]:text-blue-600" />
+      {navState === "open" && <p className="transition-all group-[.active]:text-blue-600">{title}</p>}
     </NavLink>
   );
 };
@@ -66,7 +66,7 @@ const SideBar = ({ links, navState, navStateToggleHandler: handleNavStateToggle 
     <>
       <FlexCol
         as="aside"
-        className={`${navState === "open" && isMobile && "animate-[slideRight_.3s_ease-out_forwards] pr-10 "} top-0 fixed -left-[120%] z-20 h-screen md:h-fit md:min-h-screen overflow-y-scroll md:overflow-visible  gap-12 bg-white  px-7 pb-20 pt-12 transition-all md:relative  md:left-auto md:border-r-[1px]  md:border-r-gray-300 `}>
+        className={`${navState === "open" && isMobile && "animate-[slideRight_.3s_ease-out_forwards] pr-10 "} top-0 fixed -left-[120%] z-20 h-screen md:h-fit md:min-h-screen overflow-y-scroll md:overflow-visible  gap-12 bg-white  px-7 pb-20 pt-6 transition-all md:relative  md:left-auto md:border-r-[1px]  md:border-r-gray-300 `}>
         {!isMobile && (
           <div
             className={`absolute left-full top-[14%]  -translate-x-1/2 rounded-full bg-gray-100 p-2 transition-all ${navState === "open" ? "rotate-180" : "rotate-0"}`}

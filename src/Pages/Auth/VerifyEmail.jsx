@@ -101,7 +101,7 @@ const VerifyEmail = () => {
         <div className="px-4 text-center xsm:px-6  sm:px-8 md:px-12">
           <h1 className="mb-4 font-mono text-base xsm:text-lg sm:text-xl">{message}</h1>
           {status === "success" && (
-            <Link to="/auth/login" className=" text-sm tracking-wider text-blue xsm:text-base sm:text-lg ">
+            <Link to="/auth/login" className=" text-sm tracking-wider text-blue-600 xsm:text-base sm:text-lg ">
               Proceed to login (Redirecting in {redirect}..)
             </Link>
           )}

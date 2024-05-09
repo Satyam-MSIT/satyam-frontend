@@ -93,7 +93,7 @@ const FAQ = () => {
             <Container
               as="a"
               href="mailto: satyamjournal@msit.in"
-              className={`max-w-fit hidden sm:block bg-white px-4 hover:text-blue transition-all duration-300 py-2 ${highlight}`}>
+              className={`max-w-fit hidden sm:block bg-white px-4 hover:text-blue-600 transition-all duration-300 py-2 ${highlight}`}>
               Contact Us
             </Container>
           </FlexCenter>

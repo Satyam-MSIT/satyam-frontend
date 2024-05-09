@@ -8,7 +8,7 @@ const Header = ({ heading, message, route, routeTo }) => {
       <p className="mb-8 text-lg text-darkgrey md:text-base">
         {message}
         {"?  "}
-        <Link to={route} className="text-blue">
+        <Link to={route} className="text-blue-600">
           {routeTo}
         </Link>
       </p>

@@ -69,10 +69,7 @@ const Journals = () => {
               <tbody>
                 {data.map((journal) => (
                   <tr className="bg-white border-b  hover:bg-gray-50 ">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
-                    >
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                       {journal.title}
                     </th>
 
@@ -83,8 +80,7 @@ const Journals = () => {
                     <td className="px-6 py-4 text-right">
                       <Link
                         to={`${journal.journal_id}`}
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
+                        className="font-medium text-blue-600-600 dark:text-blue-600-500 hover:underline">
                         View
                       </Link>
                     </td>

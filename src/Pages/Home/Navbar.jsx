@@ -15,24 +15,24 @@ const NavBarItemDropable = ({ title, subLinks }) => {
 
   return (
     <Flex
-      className="relative cursor-pointer text-gray-700 transition-all items-center gap-3 pb-4 text-base  lg:text-[1.1rem] xl:text-[1.2rem] hover:text-blue"
+      className="relative cursor-pointer text-gray-700 transition-all items-center gap-3 pb-4 text-base  lg:text-[1.1rem] xl:text-[1.2rem] hover:text-blue-600"
       onMouseEnter={handleDropDownState}
       onMouseLeave={handleDropDownState}>
       {title}
       <FaAngleDown className="text-sm" />
       {dropDownState && (
-        <FlexCol className="absolute left-1/2 top-full z-10 w-72  animate-[slideInUp_200ms_ease-in_forwards]  rounded-b-xl rounded-t-[.2rem] border-t-2 border-blue bg-white shadow-xl ">
+        <FlexCol className="absolute left-1/2 top-full z-10 w-72  animate-[slideInUp_200ms_ease-in_forwards]  rounded-b-xl rounded-t-[.2rem] border-t-2 border-blue-600 bg-white shadow-xl ">
           {subLinks.map(({ title, link, onClickHandlerCustom }) =>
             link ? (
               <Link
                 key={link}
                 to={link}
-                className=" border-b-[.5px] border-gray-400 px-4 py-4  text-center text-base text-black last:border-none hover:text-blue ">
+                className=" border-b-[.5px] border-gray-400 px-4 py-4  text-center text-base text-black last:border-none hover:text-blue-600 ">
                 {title}
               </Link>
             ) : (
               <button
-                className=" border-b-[.5px] border-gray-400 px-4 py-4  text-center text-base text-black last:border-none hover:text-blue"
+                className=" border-b-[.5px] border-gray-400 px-4 py-4  text-center text-base text-black last:border-none hover:text-blue-600"
                 onClick={onClickHandlerCustom}>
                 {title}
               </button>
@@ -54,7 +54,7 @@ const Navbar = ({ links }) => {
       {!isMobile && (
         <>
           <NavLink to="/" className="group pb-4">
-            <p className=" group-[.active]:text-blue text-base lg:text-[1.1rem] xl:text-[1.2rem] text-gray-700 hover:text-blue">
+            <p className=" group-[.active]:text-blue-600 text-base lg:text-[1.1rem] xl:text-[1.2rem] text-gray-700 hover:text-blue-600">
               Home
             </p>
           </NavLink>

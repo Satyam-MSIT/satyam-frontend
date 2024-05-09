@@ -36,7 +36,7 @@ const SwiperElement = ({ testimonial, profile_image, name, title }) => {
   );
 };
 
-const radialGradient = `radial-gradient(circle at top left,${colors["--var-blue"].value},${colors["--var-blue"].rgba(0.9)} 50%,${colors["--var-blue"].rgba(0.6)} 60%,${colors["--var-blue"].value})`;
+const radialGradient = `radial-gradient(circle at top left,rgb(37,99,235),rgba(37,99,235,.9) 50%,rgba(37,99,235,.6) 60%,rgb(37,99,235))`;
 
 const LoginSignup = () => {
   const user = useSelector((state) => state.user);

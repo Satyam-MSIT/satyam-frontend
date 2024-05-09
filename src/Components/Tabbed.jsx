@@ -4,7 +4,7 @@ const TabbedElement = ({ value, Icon, onClickHandler, isActive }) => {
   return (
     <FlexCenter
       onClick={onClickHandler}
-      className={`cursor-pointer border-[1px] px-5 py-1  border-grey rounded-full transition-all duration-200 ${isActive && "!border-blue bg-[#e9ecfd] text-blue"}`}>
+      className={`cursor-pointer border-[1px] px-5 py-1  border-grey rounded-full transition-all duration-200 ${isActive && "!border-blue-600 bg-[#e9ecfd] text-blue-600"}`}>
       {Icon && <Icon />}
       <p className="text-lg font-normal tracking-wide">{value}</p>
     </FlexCenter>

@@ -90,7 +90,7 @@ const Signup = () => {
           <input type="checkbox" id="terms" required className="w-4" />
           <label htmlFor="terms">
             I agree to the{" "}
-            <Link to="/terms" className="text-blue underline">
+            <Link to="/terms" className="text-blue-600 underline">
               terms & conditions
             </Link>
           </label>

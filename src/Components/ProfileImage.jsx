@@ -10,7 +10,7 @@ const ProfileImage = ({ name, fontSize }) => {
 
   return (
     <Center className="h-full w-full rounded-full bg-[#c6ccfa]">
-      <p className={`${fontSize} font-medium tracking-wider text-blue`}>{initials.toUpperCase()}</p>
+      <p className={`${fontSize} font-medium tracking-wider text-blue-600`}>{initials.toUpperCase()}</p>
     </Center>
   );
 };
