@@ -21,8 +21,9 @@ const HeroLanding = () => {
   let label = getItem("current_volume") ?? "Getting the latest volume...";
   if (query.isSuccess) {
     if (query.data.data.success) {
-      setItem("current_volume", query.data.data.title);
-      label = query.data.data.title;
+      const title = query.data.data.volume.title;
+      setItem("current_volume", title);
+      label = title;
     } else {
       label = "Read Current Issue";
     }

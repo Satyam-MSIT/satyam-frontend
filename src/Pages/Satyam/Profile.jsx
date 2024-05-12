@@ -1,5 +1,5 @@
 import { Flex } from "../../Elements/Flex";
-import NotificationBell from "./../../assets/img/icons/notification.svg";
+// import NotificationBell from "./../../assets/img/icons/notification.svg";
 
 const Profile = () => {
   return (

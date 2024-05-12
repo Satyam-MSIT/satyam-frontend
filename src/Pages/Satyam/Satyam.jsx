@@ -1,8 +1,8 @@
 // Third party
-import { lazy, useState } from "react";
+import { lazy, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { LuLayoutDashboard as DashboardIcon } from "react-icons/lu";
 import { LuNewspaper as CallPaperIcon } from "react-icons/lu";
@@ -18,10 +18,8 @@ import Searchbar from "./Searchbar";
 import { Flex } from "../../Elements/Flex";
 import useProtectRoute from "../../Hooks/useProtectRoute";
 import Dashboard from "./Dashboard/Dashboard";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import CallPaper from "./CallPaper/CallPaper";
 const ManageUsers = lazy(() => import("./ManageUsers/ManageUsers"));
+const CallPaper = lazy(() => import("./CallPaper/CallPaper"));
 
 const links = [
   {
@@ -57,7 +55,7 @@ const links = [
 ];
 
 const Main = styled.main.attrs({
-  className: "md:no-scrollbar  relative md:absolute md:left-full md:top-0 md:h-full  md:overflow-y-scroll",
+className: "md:no-scrollbar bg-[#fafcff]  relative md:absolute md:left-full md:top-0 md:h-full  md:overflow-y-scroll",
 })`
   @media screen and (min-width: 768px) {
     width: calc(100vw - 100%);

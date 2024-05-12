@@ -1,21 +1,28 @@
 // Third party imports
 import { useState } from "react";
-import Form from "./Form";
+import styled from "styled-components";
+
+// User imports
+import Form from "./Form/Form";
+import Details from "./Details";
+import { BtnBase } from "../../../Elements/Button";
+
+export const Btn = styled(BtnBase).attrs({
+  className: " tracking-wider hover:scale-[1.05] duration-50 active:scale-[.98] border-2 text-lg",
+})``;
+
+export const Heading = styled.h1.attrs({
+  className: "text-4xl text-blue-600 font-semibold  tracking-wide",
+})``;
 
 const CallPaper = () => {
-  const [state, setState] = useState("form");
+  const [state, setState] = useState("details"); // "form" or "details"
   const stateChangeHandler = () => setState((prev) => (prev === "details" ? "form" : "details"));
 
   return (
-    <div className="ml-10 mr-4 my-6 px-3 py-2 bg-white rounded-lg">
-      {state === "details" && (
-        <>
-          <h1 className="text-3xl font-ubuntu text-blue-600 font-bold">Call for paper</h1>
-          <button onClick={stateChangeHandler}>Create</button>
-        </>
-      )}
-
-      {state === "form" && <Form />}
+    <div className="ml-6  mr-4 my-6 p-6 bg-white rounded-lg">
+      {state === "details" && <Details stateChangeHandler={stateChangeHandler} />}
+      {state === "form" && <Form stateChangeHandler={stateChangeHandler} />}
     </div>
   );
 };

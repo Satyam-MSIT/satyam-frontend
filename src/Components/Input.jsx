@@ -13,8 +13,8 @@ const PasswordIcon = styled.svg.attrs({
 
 const Input = forwardRef(
   ({ type = "text", placeholder, required = true, label, error_message, children, ...options }, ref) => {
-    const id = label.toLowerCase();
-    console.log(options);
+
+    const id = label.toLowerCase().split(" ").join("");
     return (
       <FlexCol className="gap-2">
         <label htmlFor={id} className="text-lg  text-[#555555] transition-all md:text-base">

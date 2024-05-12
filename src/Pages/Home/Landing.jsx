@@ -13,8 +13,12 @@ import Grid from "./Grid";
 import PublicationProcess from "./Landing/PublicationProcess";
 import About from "./Landing/About";
 import FAQ from "./Landing/FAQ";
+import Footer from "./Landing/Footer";
+import useHash from "../../Hooks/useHash";
 
 const Landing = () => {
+  useHash();
+
   const isMobile = useDimensions().width < 768;
   const [navState, setNavState] = useState("collapsed");
   const [newsLetterModal, setNewLetterModal] = useState("hidden");
@@ -85,6 +89,7 @@ const Landing = () => {
         <PublicationProcess />
       </div>
       <FAQ />
+      {/* <Footer /> */}
       <ScrollToTop />
     </>
   );

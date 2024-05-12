@@ -24,7 +24,10 @@ const StepProgressBar = ({ className, steps, current }) => {
 
           {index + 1 < steps && (
             <div className={` rounded-full h-2 w-full ${index + 1 < current ? "bg-blue-600" : "bg-[#e9ecfd]"} `}>
-              {index + 1 === current && <div className="w-1/2 bg-blue-400 h-full rounded-full" />}
+              <div
+                className={`w-0 ${index + 1 === current && "w-1/2"} transition-all bg-blue-400 h-full rounded-full`}
+              />
+
             </div>
           )}
         </Fragment>
