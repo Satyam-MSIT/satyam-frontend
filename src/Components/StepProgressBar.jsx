@@ -27,6 +27,7 @@ const StepProgressBar = ({ className, steps, current }) => {
               <div
                 className={`w-0 ${index + 1 === current && "w-1/2"} transition-all bg-blue-400 h-full rounded-full`}
               />
+
             </div>
           )}
         </Fragment>
