@@ -4,9 +4,23 @@ export default {
   theme: {
     fontFamily: {
       ubuntu: ["Ubuntu Sans Mono", "monospace"],
+      poppins: ["Poppins", "sans-serif"],
     },
     extend: {
       colors: {
+        blue: {
+          50: "#ebf5ff",
+          100: "#dbebff",
+          200: "#bed9ff",
+          300: "#97bfff",
+          400: "#6e97ff",
+          500: "#4c72ff",
+          600: "#334eff",
+          700: "#2036e2",
+          800: "#1d31b6",
+          900: "#20318f",
+          950: "#131b53",
+        },
         darkgrey: "#514F4F",
         grey: "#959292",
         blackGrey: "#373737",
