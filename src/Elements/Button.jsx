@@ -1,13 +1,18 @@
 import styled from "styled-components";
 
 export const BtnBase = styled.button.attrs({
-  className: "rounded-lg  px-3 xsm:px-4 sm:px-5 py-2 text-xs xsm:text-sm sm:text-base md:text-lg  transition-all",
-})``;
-
-export const Btn = styled(BtnBase).attrs({
-  className: "hover:bg-gray-100",
+  className: "rounded-lg text-base transition-all px-6 py-[.4rem] border-2",
 })``;
 
 export const BtnBlack = styled(BtnBase).attrs({
-  className: "bg-black text-white hover:bg-gray-900",
+  className: "bg-black text-white border-black hover:bg-gray-700 ",
 })``;
+
+export const BtnBlue = styled(BtnBase).attrs({
+  className: "text-blue-600 border-blue-600",
+})``;
+export const BtnBlueFill = styled(BtnBase).attrs({
+  className: "text-white bg-blue-600 border-blue-600",
+})``;
+
+

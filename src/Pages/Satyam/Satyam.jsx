@@ -55,7 +55,7 @@ const links = [
 ];
 
 const Main = styled.main.attrs({
-  className: "md:no-scrollbar  relative md:absolute md:left-full md:top-0 md:h-full  md:overflow-y-scroll",
+  className: "md:no-scrollbar bg-[#fafcff]  relative md:absolute md:left-full md:top-0 md:h-full  md:overflow-y-scroll",
 })`
   @media screen and (min-width: 768px) {
     width: calc(100vw - 100%);

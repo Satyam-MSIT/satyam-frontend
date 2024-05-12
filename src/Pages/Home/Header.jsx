@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { Flex } from "../../Elements/Flex";
 import Logo from "../../Components/Logo";
 import ProfileImage from "./../../Components/ProfileImage";
-import { BtnBlack } from "../../Elements/Button";
+import { BtnBase, BtnBlack } from "../../Elements/Button";
 
 const Header = ({ handleNavStateToggle }) => {
   const user = useSelector((state) => state.user);
@@ -42,12 +42,16 @@ const Header = ({ handleNavStateToggle }) => {
           </div>
         ) : (
           <>
-            <Link
+            <BtnBase
+              as={Link}
               to="/auth/login"
-              className="hidden hover:bg-gray-100 transition-all md:block px-5 py-2 rounded-xl border-2 font-medium text-lg text-[#232323] border-gray-300">
+              className="hidden md:block px-6 py-2 rounded-xl tracking-wide border-2  text-lg ">
               Log in
-            </Link>
-            <BtnBlack as={Link} to="/auth/signup">
+            </BtnBase>
+            <BtnBlack
+              className="px-3 xsm:px-4 sm:px-6 py-2 text-xs xsm:text-sm sm:text-base md:text-lg"
+              as={Link}
+              to="/auth/signup">
               Get Started
             </BtnBlack>
           </>

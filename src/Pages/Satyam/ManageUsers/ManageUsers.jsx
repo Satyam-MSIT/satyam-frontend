@@ -1,4 +1,4 @@
-// Third party
+// Third party imports
 import { useState } from "react";
 import { CiExport } from "react-icons/ci";
 import { IoAdd } from "react-icons/io5";
@@ -7,7 +7,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import styled from "styled-components";
 import { FaSort } from "react-icons/fa";
 import { FaAnglesRight, FaAnglesLeft } from "react-icons/fa6";
-// User
+
+// User imports
 import { Flex, FlexCenter } from "../../../Elements/Flex";
 import ProfileImage from "../../../Components/ProfileImage";
 import Modal from "../../../Components/Modal";

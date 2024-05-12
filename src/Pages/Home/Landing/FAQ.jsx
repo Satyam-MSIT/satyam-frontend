@@ -35,14 +35,6 @@ const faqs = [
   },
 ];
 
-const Summary = styled.summary`
-  &::marker {
-    font-size: 0;
-  }
-  &::-webkit-details-marker {
-    display: none;
-  }
-`;
 
 const Container = styled.div.attrs({
   className: " border-2 w-full rounded-lg border-[#e0e5e9] bg-[#f9fafc]",
@@ -56,12 +48,12 @@ const FAQElement = ({ summary, detail }) => {
 
   return (
     <Container as="details" onClick={expandToggle}>
-      <Summary className="pr-3 pl-6 py-[.85rem] flex justify-between">
+      <summary className="pr-3 pl-6 py-[.85rem] flex justify-between">
         <h3 className={highlight}>{summary}</h3>
         <IoIosArrowDown
           className={`text-xl text-blackGrey cursor-pointer transition-all duration-300 ${isExpanded && "rotate-180"}`}
         />
-      </Summary>
+      </summary>
       <p className="pr-3 pl-6 pt-1 pb-4  text-blackGrey leading-relaxed ">{detail}</p>
     </Container>
   );
