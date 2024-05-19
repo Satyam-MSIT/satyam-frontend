@@ -16,7 +16,7 @@ export const Heading = styled.h1.attrs({
 })``;
 
 const CallPaper = () => {
-  const [state, setState] = useState("details"); // "form" or "details"
+  const [state, setState] = useState("form"); // "form" or "details"
   const stateChangeHandler = () => setState((prev) => (prev === "details" ? "form" : "details"));
 
   return (

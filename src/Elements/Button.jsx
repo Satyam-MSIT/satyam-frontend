@@ -6,7 +6,7 @@ export const BtnBase = styled.button.attrs({
 
 
 export const BtnBlack = styled(BtnBase).attrs({
-  className: "bg-black text-white border-black hover:bg-gray-700 ",
+  className: "bg-black text-white border-black hover:bg-[#111] ",
 })``;
 
 export const BtnBlue = styled(BtnBase).attrs({

@@ -15,9 +15,11 @@ const user = createSlice({
     reset() {
       return {};
     },
+
     updateToken(state, { payload: { token } }) {
       state.token = token;
     },
+    
     update(state, { payload }) {
       return { ...state, ...payload };
     },

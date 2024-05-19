@@ -107,11 +107,13 @@ const Details = ({ stateChangeHandler }) => {
           <Volume key={volume._id} isLatest={index === 0} data={volume} />
         ))} */}
 
-      <FlexCol className="gap-5">
-        {volumes.map((volume, index) => (
-          <Volume key={volume._id} isLatest={index === 0} data={volume} />
-        ))}
-      </FlexCol>
+      {query.isSuccess && query.data.data && (
+        <FlexCol className="gap-5">
+          {volumes.map((volume, index) => (
+            <Volume key={volume._id} isLatest={index === 0} data={volume} />
+          ))}
+        </FlexCol>
+      )}
     </div>
   );
 };

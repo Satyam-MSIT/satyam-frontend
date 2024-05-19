@@ -1,6 +1,6 @@
 // User imports
-import useClamp from "../../Hooks/useClamp";
-import useDimensions from "../../Hooks/useDimensions";
+import useClamp from "./../../../Hooks/useClamp";
+import useDimensions from "./../../../Hooks/useDimensions";
 
 const GridLines = ({ lines, rotate = false }) => {
   return (
