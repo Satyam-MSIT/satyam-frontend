@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
+// User imports
 import useinitAuth from "./Hooks/useinitAuth";
 import Loader from "./Components/Loader";
 import Profile from "./Pages/Reviewer/Profile";
@@ -28,6 +29,7 @@ const App = () => {
     <>
       <Suspense fallback={<Loader />}>
         <Routes>
+          {/* Home routes */}
           <Route path="*" element={<Home />}>
             <Route path="*" element={<Landing />} />
             <Route path="editorialboard" element={<EditorialBoard />} />
@@ -35,9 +37,14 @@ const App = () => {
             <Route path="ieeeformat" element={<IEEEformat />} />
             <Route path="copyrightform" element={<CopyRightForm />} />
           </Route>
+
           <Route path="/auth/*" element={<Auth />} />
+
           <Route path="/satyam/*" element={<Satyam />} />
+          
           <Route path="/author/*" element={<Author />} />
+          
+          {/* Reviewer routes */}
           <Route path="/reviewer" element={<Reviewer />} />
           <Route path="/reviewer/dashboard/:id" element={<Dashboard />} />
           <Route path="/reviewer/profile" element={<Profile />} />

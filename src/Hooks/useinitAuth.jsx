@@ -18,7 +18,7 @@ const useinitAuth = () => {
   const dispatch = useDispatch();
 
   const info = JSON.parse(getItem("info") ?? "{}");
-  const l_id = getItem("l_id");
+  const l_id = getItem("l_id") ?? "";
 
   dispatch(update({ ...info, token: l_id }));
 };
