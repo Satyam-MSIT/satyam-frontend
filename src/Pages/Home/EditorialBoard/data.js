@@ -1,37 +1,36 @@
 export default {
-  "chief-editors": [
-    {
-      name: "Dr. Sapna Malik",
-      designation: "Associate Professor",
-      qualification: ["PhD (Ansal University, Gurgaon)", "M.Tech (GGSIPU, Delhi)", "B.Tech (MDU, Rohtak)"],
-      phone: "09711116044",
-      email: "sapnadhankhar@msit.in",
-      aoi: " Mobile Security Machine Learning, Soft Computing, Cyber Security",
-      experience: "19 years",
-    },
-  ],
-
-  "managing-editors": [
-    {
-      name: "Dr. Deepshikha Yadav",
-      designation: "Assistant Professor, ECE",
-      qualification: [" Ph.D.(GGSIPU)", " M.Tech(GGSIPU)", "B.E(MDU)"],
-      phone: " 9711016618",
-      email: "deepshikha@msit.in",
-      aoi: " IOT, Machine Learning, Artificial Intelligence, Embedded Systems, Microprocessors and Microcontrollers, Circuit designing in PSIM and MULTISIM, Renewable energy resources.",
-      experience: "15+ years",
-    },
-  ],
+  "chief-editor": {
+    name: "Dr. Sapna Malik",
+    designation:
+      "Associate Professor, Maharaja Surajmal Institute of Technology(MSIT), New Delhi, India",
+    email: "sapnadhankhar@msit.in",
+  },
+  "managing-editor": {
+    name: "Dr. Deepshikha Yadav",
+    designation:
+      " Assistant Professor, ECE, Maharaja Surajmal Institute of Technology(MSIT), New Delhi, India",
+    email: "deepshikha@msit.in",
+  },
   editors: [
     {
-      name: "Dr. Deepshikha Yadav",
-      designation: "Assistant Professor, ECE",
-      qualification: [" Ph.D.(GGSIPU)", " M.Tech(GGSIPU)", "B.E(MDU)"],
-      phone: " 9711016618",
-      email: "deepshikha@msit.in",
-      aoi: " IOT, Machine Learning, Artificial Intelligence, Embedded Systems, Microprocessors and Microcontrollers, Circuit designing in PSIM and MULTISIM, Renewable energy resources.",
-      experience: "15+ years",
+      name: "Dr. Savita Ahlawat",
+      designation:
+        "Associate Professor, Maharaja Surajmal Institute of Technology(MSIT), New Delhi, India",
+    },
+    {
+      name: "Dr. Sitender Malik",
+      designation:
+        "Associate Professor, Maharaja Surajmal Institute of Technology(MSIT), New Delhi, India",
+    },
+    {
+      name: "Ms. Vishakha Tomar",
+      designation:
+        "Associate Professor, Maharaja Surajmal Institute of Technology(MSIT), New Delhi, India",
     },
   ],
-  "student-editors": [],
+  "student-editors": [
+    {
+      name: "Mr. Yash Mani Prakash",
+    },
+  ],
 };

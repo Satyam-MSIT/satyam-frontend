@@ -8,13 +8,14 @@ import Grid from "./Grid";
 import PublicationProcess from "./PublicationProcess";
 import About from "./About";
 import FAQ from "./FAQ";
-import Footer from "./Footer";
 import useHash from "../../../Hooks/useHash";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   useHash();
   const [newsLetterModal, setNewLetterModal] = useState("hidden");
-  const handleNewLetterModalToggle = () => setNewLetterModal((state) => (state === "hidden" ? "shown" : "hidden"));
+  const handleNewLetterModalToggle = () =>
+    setNewLetterModal((state) => (state === "hidden" ? "shown" : "hidden"));
 
   return (
     <>
@@ -24,8 +25,8 @@ const Landing = () => {
         <About />
         <PublicationProcess />
       </div>
+
       <FAQ />
-      {/* <Footer /> */}
       <ScrollToTop />
     </>
   );

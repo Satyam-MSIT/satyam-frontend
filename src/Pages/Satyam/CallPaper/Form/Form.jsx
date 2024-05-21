@@ -90,7 +90,8 @@ const Form = ({ stateChangeHandler }) => {
   const formSubmitHandler = (event) => {
     event.preventDefault();
     if (step === 4) {
-      // export const volumeSchema = z.object({
+      // For / call;
+      // const volumeSchema = z.object({
       //   number: z.string().length(5),
       //   title: z.string(),
       //   description: z.string(),
@@ -120,15 +121,13 @@ const Form = ({ stateChangeHandler }) => {
       //   html: z.string(),
       // });
 
-      console.log(user.token);
-
       announcmentMutation.mutate(
         axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/newsletter/announcement`,
           {
             type: "call",
             subject: `Call for paper : ${details.title}`,
-            html: details.desc,
+            html: details.description.content,
             files: details.files,
           },
           {
@@ -137,29 +136,38 @@ const Form = ({ stateChangeHandler }) => {
               dimensions: window.screen.width + window.screen.height,
               "Content-Type": "multipart/form-data",
             },
-          }
-        )
-      );
-
-      const response = {
-        number: `${details.volume.toString().padStart(3, "0")}${details.issue.toString().padStart(2, "0")}`,
-        ...details,
-      };
-      delete response.volume;
-      delete response.issue;
-      delete response.files;
-      callMutation.mutate(
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/volume/call`, response, {
-          headers: {
-            token: user.token,
-            dimensions: window.screen.width + window.screen.height,
           },
-        })
+        ),
       );
 
-      console.log(response);
+      // const response = {
+      //   ...details,
+      //   number: `${details.volume.toString().padStart(3, "0")}${details.issue.toString().padStart(2, "0")}`,
+      //   description: details.description.content,
+      //   acceptancePing: 5,
+      //   reviewPing: 10,
+      // };
+      // delete response.volume;
+      // delete response.issue;
+      // delete response.files;
+
+      // callMutation.mutate(
+      //   axios.post(
+      //     `${import.meta.env.VITE_BACKEND_URL}/volume/call`,
+      //     response,
+      //     {
+      //       headers: {
+      //         token: user.token,
+      //         dimensions: window.screen.width + window.screen.height,
+      //       },
+      //     },
+      //   ),
+      // );
+
+      // console.log(response);
     } else {
-      if (step === 1 && details.keywords.length < 3) return toast.error("Please provide atleast 3 keywords");
+      if (step === 1 && details.keywords.length < 3)
+        return toast.error("Please provide atleast 3 keywords");
       if (step === 2 && details.description.length < 100)
         return toast.error("Description should have minimum 100 characters");
 
@@ -175,6 +183,7 @@ const Form = ({ stateChangeHandler }) => {
   if (announcmentMutation.isError) console.log(announcmentMutation.error);
 
   if (callMutation.isSuccess) console.log(callMutation.data);
+  if (announcmentMutation.isSuccess) console.log(announcmentMutation.data);
 
   return (
     <>

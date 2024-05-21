@@ -8,12 +8,14 @@ import Header from "./Header";
 import Navbar from "./Navbar";
 import SideBar from "../../Components/SideBar";
 import useDimensions from "../../Hooks/useDimensions";
+import Footer from "./Footer";
 
 const Home = () => {
   const isMobile = useDimensions().width < 768;
   const [navState, setNavState] = useState("collapsed");
 
-  const handleNavStateToggle = () => setNavState((state) => (state === "collapsed" ? "open" : "collapsed"));
+  const handleNavStateToggle = () =>
+    setNavState((state) => (state === "collapsed" ? "open" : "collapsed"));
 
   const links = [
     // TODO replace about and publish icon
@@ -70,9 +72,16 @@ const Home = () => {
     <>
       <Header handleNavStateToggle={handleNavStateToggle} />
       <Navbar links={links} />
-      {isMobile && <SideBar links={links} navState={navState} navStateToggleHandler={handleNavStateToggle} />}
+      {isMobile && (
+        <SideBar
+          links={links}
+          navState={navState}
+          navStateToggleHandler={handleNavStateToggle}
+        />
+      )}
 
       <Outlet />
+      {/* <Footer /> */}
     </>
   );
 };
