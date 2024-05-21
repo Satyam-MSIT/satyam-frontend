@@ -76,8 +76,13 @@ const initDetails = (initialArg) => {
 
 const Form = ({ stateChangeHandler }) => {
   const user = useSelector((state) => state.user);
+  
   const [step, setStep] = useState(1);
-  const [details, dispatchDetails] = useReducer(detailsReducer, detailsInit, initDetails);
+  const [details, dispatchDetails] = useReducer(
+    detailsReducer,
+    detailsInit,
+    initDetails,
+  );
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Enter") event.preventDefault();
@@ -87,6 +92,7 @@ const Form = ({ stateChangeHandler }) => {
   const announcmentMutation = useMutation({ mutationFn: (promise) => promise });
 
   const stepBackHandler = () => setStep((prev) => Math.max(prev - 1, 1));
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
     if (step === 4) {
@@ -179,34 +185,43 @@ const Form = ({ stateChangeHandler }) => {
   if (step === 2) subHeading = "Detailed description";
   else if (step === 3) subHeading = "Upload attachments";
 
-  if (callMutation.isError) console.log(callMutation.error);
-  if (announcmentMutation.isError) console.log(announcmentMutation.error);
-
-  if (callMutation.isSuccess) console.log(callMutation.data);
-  if (announcmentMutation.isSuccess) console.log(announcmentMutation.data);
-
   return (
     <>
-      <FlexCenter className="mb-12 ">
+      <FlexCenter className="mx-4 mb-12">
         <FaChevronLeft
           onClick={stateChangeHandler}
-          className="text-blue-600 hover:scale-105 active:scale-95 hover:-translate-x-0.5 text-xl  transition-all"
+          className="cursor-pointer text-xl text-blue-800 transition-all hover:-translate-x-0.5 hover:scale-110  active:scale-95"
         />
-        <Heading className="text-center grow">Create call for paper</Heading>
+        <Heading className="grow text-center">Create call for paper</Heading>
       </FlexCenter>
 
-      <StepProgressBar className="mx-12 mb-12 " steps={4} current={step} />
+      <StepProgressBar
+        className="mx-4 mb-12 md:mx-12"
+        steps={4}
+        current={step}
+      />
 
-      <div className="mx-auto px-4 max-w-screen-xl">
-        <h1 className="text-2xl mb-6 ">{subHeading}</h1>
-        <FlexCol as="form" className="gap-6 mx-4" onSubmit={formSubmitHandler}>
-          {step === 1 && <BasicDetails details={details} dispatcher={dispatchDetails} />}
-          {step === 2 && <Description details={details} dispatcher={dispatchDetails} />}
-          {step === 3 && <UploadAttachment details={details} dispatcher={dispatchDetails} />}
+      <div className="mx-auto max-w-screen-xl px-4">
+        <h1 className="mb-6 text-2xl ">{subHeading}</h1>
+        <FlexCol as="form" className="mx-4 gap-6" onSubmit={formSubmitHandler}>
+          {step === 1 && (
+            <BasicDetails details={details} dispatcher={dispatchDetails} />
+          )}
+          {step === 2 && (
+            <Description details={details} dispatcher={dispatchDetails} />
+          )}
+          {step === 3 && (
+            <UploadAttachment details={details} dispatcher={dispatchDetails} />
+          )}
           {step === 4 && <Submit details={details} />}
-          {step === 5 && <Status callStatus={callMutation.status} announcementStatus={announcmentMutation.status} />}
+          {step === 5 && (
+            <Status
+              callStatus={callMutation.status}
+              announcementStatus={announcmentMutation.status}
+            />
+          )}
 
-          <FlexCenter className="justify-between mt-2">
+          <FlexCenter className="mt-2 justify-between">
             <Btn type="button" disabled={step === 1} onClick={stepBackHandler}>
               Back
             </Btn>

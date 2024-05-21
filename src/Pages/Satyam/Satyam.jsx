@@ -53,9 +53,9 @@ const links = [
     title: "Manage Users",
   },
 ];
-
+//  bg-[#fafcff]
 const Main = styled.main.attrs({
-className: "md:no-scrollbar bg-[#fafcff]  relative md:absolute md:left-full md:top-0 md:h-full  md:overflow-y-scroll",
+className: "md:no-scrollbar  relative md:absolute md:left-full md:top-0 md:h-full  md:overflow-y-scroll",
 })`
   @media screen and (min-width: 768px) {
     width: calc(100vw - 100%);
@@ -77,7 +77,7 @@ const Satyam = () => {
   const handleNavStateToggle = () => setNavState((state) => (state === "collapsed" ? "open" : "collapsed"));
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden font-poppins">
       <div className="relative block  md:inline-block ">
         <SideBar links={links} navState={navState} navStateToggleHandler={handleNavStateToggle} />
 

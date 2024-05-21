@@ -56,9 +56,9 @@ const EditorialBoard = () => {
   };
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   if (window.scrollY === 0) showEditorialBoard();
-    // }, 1500);
+    setTimeout(() => {
+      if (window.scrollY === 0) showEditorialBoard();
+    }, 1500);
   }, []);
 
   return (
@@ -87,7 +87,7 @@ const EditorialBoard = () => {
 
       {/* Editorial Board */}
       <div
-        className="mx-auto grid max-w-screen-xl justify-between gap-12 px-12 md:grid-cols-[4fr_1fr] "
+        className="mx-auto grid max-w-screen-xl justify-between gap-12 px-6 xsm:px-8 md:grid-cols-[4fr_1fr] md:px-12 "
         ref={editorialBoardMainRef}
       >
         <FlexCol as="section" id="editorial-board-main" className=" gap-12 ">
