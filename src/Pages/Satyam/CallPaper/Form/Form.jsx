@@ -1,6 +1,7 @@
 // Third party imports
 import { useState, useEffect, useReducer } from "react";
 import { FaArrowLeftLong, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { useMutation } from "@tanstack/react-query";
 
 // User imports
 import StepProgressBar from "../../../../Components/StepProgressBar";
@@ -12,8 +13,11 @@ import { getItem, setItem } from "../../../../Functions/storage";
 import { Btn, Heading } from "../CallPaper";
 import { BtnBlueFill } from "../../../../Elements/Button";
 import { toast } from "react-toastify";
+import axios from "axios";
+import Submit from "./Submit";
+import { useSelector } from "react-redux";
 
-// const volumeSchema = z.object({
+// export const volumeSchema = z.object({
 //   number: z.string().length(5),
 //   title: z.string(),
 //   description: z.string(),
@@ -51,26 +55,7 @@ const detailsInit = {
 };
 
 const detailsReducer = (state, action) => {
-  switch (action.type) {
-    case "update volume no":
-      state = { ...state, volume: action.payload.volume };
-      break;
-    case "update issue no":
-      state = { ...state, issue: action.payload.issue };
-      break;
-    case "update title":
-      state = { ...state, title: action.payload.title };
-      break;
-    case "update description":
-      state = { ...state, description: action.payload.description };
-      break;
-    case "update files":
-      state = { ...state, files: action.payload.files };
-      break;
-    case "update keywords":
-      state = { ...state, keywords: action.payload.keywords };
-      break;
-  }
+  state = { ...state, ...action.payload };
   setItem("form_callpaper", JSON.stringify(state));
   return state;
 };
@@ -90,19 +75,105 @@ const initDetails = (initialArg) => {
 };
 
 const Form = ({ stateChangeHandler }) => {
+  const user = useSelector((state) => state.user);
+  
   const [step, setStep] = useState(1);
-  const [details, dispatchDetails] = useReducer(detailsReducer, detailsInit, initDetails);
+  const [details, dispatchDetails] = useReducer(
+    detailsReducer,
+    detailsInit,
+    initDetails,
+  );
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Enter") event.preventDefault();
   });
 
+  const callMutation = useMutation({ mutationFn: (promise) => promise });
+  const announcmentMutation = useMutation({ mutationFn: (promise) => promise });
+
   const stepBackHandler = () => setStep((prev) => Math.max(prev - 1, 1));
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
     if (step === 4) {
+      // For / call;
+      // const volumeSchema = z.object({
+      //   number: z.string().length(5),
+      //   title: z.string(),
+      //   description: z.string(),
+      //   keywords: z.array(z.string()),
+      //   acceptanceTill: z
+      //     .string()
+      //     .refine((date) => {
+      //       const regex = /^\d{4}-\d{2}-\d{2}$/;
+      //       return regex.test(date);
+      //     })
+      //     .optional(),
+      //   publishDate: z
+      //     .string()
+      //     .refine((date) => {
+      //       const regex = /^\d{4}-\d{2}-\d{2}$/;
+      //       return regex.test(date);
+      //     })
+      //     .optional(),
+      //   acceptancePing: z.number().optional(),
+      //   reviewPing: z.number().optional(),
+      // });
+
+      // export const announcementSchema = z.object({
+      //   type: z.enum(announcementTypes).optional(),
+      //   subject: z.string(),
+      // files
+      //   html: z.string(),
+      // });
+
+      announcmentMutation.mutate(
+        axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/newsletter/announcement`,
+          {
+            type: "call",
+            subject: `Call for paper : ${details.title}`,
+            html: details.description.content,
+            files: details.files,
+          },
+          {
+            headers: {
+              token: user.token,
+              dimensions: window.screen.width + window.screen.height,
+              "Content-Type": "multipart/form-data",
+            },
+          },
+        ),
+      );
+
+      // const response = {
+      //   ...details,
+      //   number: `${details.volume.toString().padStart(3, "0")}${details.issue.toString().padStart(2, "0")}`,
+      //   description: details.description.content,
+      //   acceptancePing: 5,
+      //   reviewPing: 10,
+      // };
+      // delete response.volume;
+      // delete response.issue;
+      // delete response.files;
+
+      // callMutation.mutate(
+      //   axios.post(
+      //     `${import.meta.env.VITE_BACKEND_URL}/volume/call`,
+      //     response,
+      //     {
+      //       headers: {
+      //         token: user.token,
+      //         dimensions: window.screen.width + window.screen.height,
+      //       },
+      //     },
+      //   ),
+      // );
+
+      // console.log(response);
     } else {
-      if (step === 1 && details.keywords.length < 3) return toast.error("Please provide atleast 3 keywords");
+      if (step === 1 && details.keywords.length < 3)
+        return toast.error("Please provide atleast 3 keywords");
       if (step === 2 && details.description.length < 100)
         return toast.error("Description should have minimum 100 characters");
 
@@ -116,24 +187,41 @@ const Form = ({ stateChangeHandler }) => {
 
   return (
     <>
-      <FlexCenter className="mb-12 ">
+      <FlexCenter className="mx-4 mb-12">
         <FaChevronLeft
           onClick={stateChangeHandler}
-          className="text-blue-600 hover:scale-105 active:scale-95 hover:-translate-x-0.5 text-xl  transition-all"
+          className="cursor-pointer text-xl text-blue-800 transition-all hover:-translate-x-0.5 hover:scale-110  active:scale-95"
         />
-        <Heading className="text-center grow">Create call for paper</Heading>
+        <Heading className="grow text-center">Create call for paper</Heading>
       </FlexCenter>
 
-      <StepProgressBar className="mx-12 mb-12 " steps={4} current={step} />
+      <StepProgressBar
+        className="mx-4 mb-12 md:mx-12"
+        steps={4}
+        current={step}
+      />
 
-      <div className="mx-auto px-4 max-w-screen-xl">
-        <h1 className="text-2xl mb-6 ">{subHeading}</h1>
-        <FlexCol as="form" className="gap-5 mx-4" onSubmit={formSubmitHandler}>
-          {step === 1 && <BasicDetails details={details} dispatcher={dispatchDetails} />}
-          {step === 2 && <Description details={details} dispatcher={dispatchDetails} />}
-          {step === 3 && <UploadAttachment details={details} dispatcher={dispatchDetails} />}
+      <div className="mx-auto max-w-screen-xl px-4">
+        <h1 className="mb-6 text-2xl ">{subHeading}</h1>
+        <FlexCol as="form" className="mx-4 gap-6" onSubmit={formSubmitHandler}>
+          {step === 1 && (
+            <BasicDetails details={details} dispatcher={dispatchDetails} />
+          )}
+          {step === 2 && (
+            <Description details={details} dispatcher={dispatchDetails} />
+          )}
+          {step === 3 && (
+            <UploadAttachment details={details} dispatcher={dispatchDetails} />
+          )}
+          {step === 4 && <Submit details={details} />}
+          {step === 5 && (
+            <Status
+              callStatus={callMutation.status}
+              announcementStatus={announcmentMutation.status}
+            />
+          )}
 
-          <FlexCenter className="justify-between mt-2">
+          <FlexCenter className="mt-2 justify-between">
             <Btn type="button" disabled={step === 1} onClick={stepBackHandler}>
               Back
             </Btn>

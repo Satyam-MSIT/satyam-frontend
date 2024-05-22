@@ -1,30 +1,21 @@
-// Third party modules
-import { useState, useEffect } from "react";
+// Third party imports
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import { MdOutlineArticle as ArticlesAndIssuesIcon } from "react-icons/md";
 
-// User Modules
+// User imports
 import Header from "./Header";
 import Navbar from "./Navbar";
-import HeroLanding from "./Landing/HeroLanding";
 import SideBar from "../../Components/SideBar";
 import useDimensions from "../../Hooks/useDimensions";
-import ScrollToTop from "../../Components/ScrollToTop";
-import Grid from "./Grid";
-import PublicationProcess from "./Landing/PublicationProcess";
-import About from "./Landing/About";
-import FAQ from "./Landing/FAQ";
-import Footer from "./Landing/Footer";
-import useHash from "../../Hooks/useHash";
+import Footer from "./Footer";
 
-const Landing = () => {
-  useHash();
-
+const Home = () => {
   const isMobile = useDimensions().width < 768;
   const [navState, setNavState] = useState("collapsed");
-  const [newsLetterModal, setNewLetterModal] = useState("hidden");
 
-  const handleNavStateToggle = () => setNavState((state) => (state === "collapsed" ? "open" : "collapsed"));
-  const handleNewLetterModalToggle = () => setNewLetterModal((state) => (state === "hidden" ? "shown" : "hidden"));
+  const handleNavStateToggle = () =>
+    setNavState((state) => (state === "collapsed" ? "open" : "collapsed"));
 
   const links = [
     // TODO replace about and publish icon
@@ -81,18 +72,18 @@ const Landing = () => {
     <>
       <Header handleNavStateToggle={handleNavStateToggle} />
       <Navbar links={links} />
-      {isMobile && <SideBar links={links} navState={navState} navStateToggleHandler={handleNavStateToggle} />}
-      <div className="relative ">
-        <Grid />
-        <HeroLanding />
-        <About />
-        <PublicationProcess />
-      </div>
-      <FAQ />
+      {isMobile && (
+        <SideBar
+          links={links}
+          navState={navState}
+          navStateToggleHandler={handleNavStateToggle}
+        />
+      )}
+
+      <Outlet />
       {/* <Footer /> */}
-      <ScrollToTop />
     </>
   );
 };
 
-export default Landing;
+export default Home;

@@ -9,7 +9,7 @@ const useHash = () => {
       const element = document.querySelector(hash);
       if (element) element.scrollIntoView({ behavior: "smooth" });
     }
-  }, []);
+  }, [hash]);
 };
 
 export default useHash;

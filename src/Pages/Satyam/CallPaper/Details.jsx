@@ -1,117 +1,101 @@
-import { FlexCenter, FlexCol } from "../../../Elements/Flex";
-import { useQuery } from "@tanstack/react-query";
-
+// Third party imports
+import { useState } from "react";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { IoIosArrowDown } from "react-icons/io";
+import { clsx } from "clsx";
+
+// User imports
+import { Flex, FlexCenter, FlexCol } from "../../../Elements/Flex";
 import Spinner from "../../../Components/Spinner";
 import { Center, CenterAbsolute } from "../../../Elements/Center";
 import { Btn, Heading } from "./CallPaper";
-import { BtnBlue, BtnBlueFill } from "../../../Elements/Button";
-import { IoAdd } from "react-icons/io5";
-import { IoIosArrowDown } from "react-icons/io";
-import { useState } from "react";
 
-const volumes = [
-  {
-    _id: "6623f172e03d055660dce972",
-    number: "12312",
-    title: "Satyam vol 11 (2022-23)",
-    description: "desc of vol 12",
-    keywords: ["science", "tech", "innovation"],
-    acceptanceTill: "2024-08-01T00:00:00.000Z",
-    publishDate: "2025-03-01T00:00:00.000Z",
-    acceptancePing: 5,
-    reviewPing: 5,
-    createdAt: "2024-04-20T16:46:42.032Z",
-    updatedAt: "2024-04-20T16:46:42.032Z",
-  },
-  {
-    _id: "6623f172e03d055660dcss972",
-    number: "12313",
-    title: "Satyam vol 11 (2022-23)",
-    description: "desc of vol 12",
-    keywords: ["science", "tech", "innovation"],
-    acceptanceTill: "2024-08-01T00:00:00.000Z",
-    publishDate: "2025-03-01T00:00:00.000Z",
-    acceptancePing: 5,
-    reviewPing: 5,
-    createdAt: "2024-04-20T16:46:42.032Z",
-    updatedAt: "2024-04-20T16:46:42.032Z",
-  },
-];
+const Volume = ({ volume, isActive }) => {
+  console.log(volume);
 
-const Volume = ({ data, isLatest }) => {
-  const [state, setState] = useState("closed"); // "open" or "closed"
-  const stateChangeHandler = () => setState((prev) => (prev === "closed" ? "open" : "closed"));
+  const [isExpanded, setIsExpanded] = useState(false);
+  const expandHandler = () => setIsExpanded((prev) => !prev);
 
   return (
     <details
-      open={state === "open"}
-      className="shadow-[0_0_10px_1px_rgba(0,0,0,.2)] transition-all px-6 rounded-lg pb-5">
-      <summary onClick={stateChangeHandler}>
-        {isLatest && (
-          <span className="inline-block text-white px-4 mt-3 -skew-x-[8deg] tracking-wider animate-[pulse_2s_infinite_linear]  rounded-sm py-[.1rem] bg-green-600 mb-2">
-            Latest
-          </span>
-        )}
-
-        <FlexCenter className="justify-between">
-          <h2 className="text-lg">{data.title}</h2>
-          <FlexCenter className="gap-6">
-            <div className="font-semibold tracking-wide">
-              Volume No : <span className="font-normal text-darkgrey">{data.number.slice(0, 3)}</span>
-            </div>
-            <div className="font-semibold">
-              Issue No : <span className="font-normal text-darkgrey">{data.number.slice(3)}</span>
-            </div>
-            <IoIosArrowDown className={`ml-2 ${state === "open" && "rotate-180"} transition-all duration-200`} />
+      className={clsx(
+        "rounded-xl px-6 py-5 transition-all",
+        isActive
+          ? "border-woodsmoke-900 border-2"
+          : "shadow-[0_0_10px_1px_rgba(0,0,0,.2)]",
+      )}
+    >
+      <Flex as="summary" onClick={expandHandler} className="justify-between">
+        <FlexCol className="gap-1">
+          <h2 className="text-lg font-semibold">{volume.title}</h2>
+          <FlexCenter className="text-pale-sky-600 gap-4">
+            <span>Volume&nbsp; {parseInt(`${volume.number}`.slice(0, 3))}</span>
+            <span className="bg-pale-sky-500 inline-block h-[80%] w-[1.5px]"></span>
+            <span>Issue&nbsp; {parseInt(`${volume.number}`.slice(3))}</span>
           </FlexCenter>
-        </FlexCenter>
-      </summary>
-      <div className="font-semibold tracking-wide mt-4">
-        Description : <span className="font-normal text-darkgrey">{data.description}</span>
-      </div>
+        </FlexCol>
+        <IoIosArrowDown
+          className={clsx(
+            "text-xl transition-all duration-200",
+            isExpanded && "rotate-180",
+          )}
+        />
+      </Flex>
+      <div className=" font-semibold tracking-wide">Description :</div>
     </details>
   );
 };
 
 const Details = ({ stateChangeHandler }) => {
   const query = useQuery({
-    queryKey: ["latestvolume"],
+    queryKey: ["allvolume"],
     queryFn: () => axios.get(`${import.meta.env.VITE_BACKEND_URL}/volume/all`),
     staleTime: Infinity,
   });
 
   return (
-    <div className="min-h-screen ">
-      <FlexCenter className="justify-between mb-8">
-        <Heading>Call for Paper</Heading>
-        <Btn as={BtnBlueFill} onClick={stateChangeHandler}>
-          <FlexCenter className="gap-2">
-            <IoAdd />
-            Create
-          </FlexCenter>
+    <div className="min-h-screen">
+      <FlexCenter className="mb-12 flex-wrap justify-between gap-2">
+        <Heading>Call For Paper</Heading>
+        <Btn
+          className="border-none bg-blue-800 px-3 py-[.65rem] text-[.9rem] text-white hover:bg-blue-900 xsm:px-4 xsm:text-base  sm:px-6  sm:text-[1.1rem]"
+          onClick={stateChangeHandler}
+        >
+          Create New Call
         </Btn>
       </FlexCenter>
 
       {query.isLoading && (
-        <CenterAbsolute as={Center} className="gap-6   ">
-          <Spinner thickness=".35rem" className="shrink-0 w-16 h-16 " />
-          <h4 className="text-xl text-darkgrey">Crunching the latest data for you....</h4>
+        <CenterAbsolute
+          as={Center}
+          className=" w-full flex-col gap-8 md:flex-row"
+        >
+          <Spinner $thickness=".35rem" className=" h-16 w-16 shrink-0 " />
+          <h4 className="text-woodsmoke-800 text-lg tracking-wide">
+            Loading the most recent data
+            <span className="tracking-widest">....</span>
+          </h4>
         </CenterAbsolute>
       )}
 
-      {/* {query.isSuccess && JSON.stringify(query.data.data)} */}
-      {/* {query.isSuccess &&
-        query.data.data &&
-        query.data.data.volumes.map((volume, index) => (
-          <Volume key={volume._id} isLatest={index === 0} data={volume} />
-        ))} */}
-
-      <FlexCol className="gap-5">
-        {volumes.map((volume, index) => (
-          <Volume key={volume._id} isLatest={index === 0} data={volume} />
-        ))}
-      </FlexCol>
+      {query.isSuccess && query.data.data && (
+        <FlexCol className="gap-7">
+          {query.data.data.volumes
+            .sort(
+              (a, b) =>
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime(),
+            )
+            .map((volume) => (
+              <Volume
+                key={volume._id}
+                isActive={volume.status !== "published"}
+                volume={volume}
+              />
+            ))}
+        </FlexCol>
+      )}
     </div>
   );
 };

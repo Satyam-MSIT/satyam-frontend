@@ -1,13 +1,22 @@
 // Third party
 import { useEffect, useRef, useCallback } from "react";
+import isOutDimensionsClick from "../Functions/isOutsideDimensionsClick";
 
 const CustomModal = ({ className, children, state, hideModalHandler }) => {
   return state === "open" ? (
     <>
       {/* Modal */}
-      <div className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 ${className}`}>{children}</div>;
-      {/* Backdrop */}
-      <div className="fixed w-full h-full z-20 bg-[rgba(0,0,0,.6)] inset-0" onClick={hideModalHandler} />;
+      <div
+        className={`fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 ${className}`}
+      >
+        {children}
+      </div>
+      ;{/* Backdrop */}
+      <div
+        className="fixed inset-0 z-20 h-full w-full bg-[rgba(0,0,0,.6)]"
+        onClick={hideModalHandler}
+      />
+      ;
     </>
   ) : (
     <></>
@@ -24,21 +33,21 @@ const DialogModal = ({ className, children, state, hideModalHandler }) => {
 
   const onClickHandler = useCallback(
     (event) => {
+      const { clientX, clientY } = event;
       const dialogDimensions = event.target.getBoundingClientRect();
-      if (
-        event.clientX < dialogDimensions.left ||
-        event.clientX > dialogDimensions.right ||
-        event.clientY < dialogDimensions.top ||
-        event.clientY > dialogDimensions.bottom
-      ) {
+      if (isOutDimensionsClick(dialogDimensions, clientX, clientY)) {
         hideModalHandler();
       }
     },
-    [hideModalHandler]
+    [hideModalHandler],
   );
 
   return (
-    <dialog ref={dialogRef} className={`backdrop:bg-[rgba(0,0,0,.6)] ${className}`} onClick={onClickHandler}>
+    <dialog
+      ref={dialogRef}
+      className={`backdrop:bg-[rgba(0,0,0,.6)] ${className}`}
+      onClick={onClickHandler}
+    >
       {children}
     </dialog>
   );
